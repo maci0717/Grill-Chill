@@ -1,0 +1,18 @@
+<tr>
+    <td title="Ime"><?php echo $red->ime?></td>
+    <td style="text-align: left;" title="Prezime"><?php echo $red->prezime?></td>
+    <td style="text-align: left;" title="E-mail"><?php echo $red->email?></td>
+    <td style="text-align: left;" title="Status"><?php echo $red->status?></td>
+    <td style="text-align: left;" title="Aktivan"><?php echo $red->aktivan?></td>
+
+    <td>
+    <!-- Uređivanje korisnika -->
+    <a href="/korisnici/promjena?sifra=<?php echo $red->sifra ?>">
+    <i class="fas fa-user-edit fa-2x" style="color: orange;" title="Uredi"></i></a>
+  
+    <!-- Brisanje korisnika -->
+    <a onclick="return confirm('Sigurno zelis obrisati <?php echo $red->ime . ' ' . $red->prezime ?> ');" 
+    href="/korisnici/obrisi?sifra=<?php echo $red->sifra ?>">
+    <i class="fas fa-user-times fa-2x" style="color: orange;" title="Ukloni"></i></a>
+    </td>
+</tr>

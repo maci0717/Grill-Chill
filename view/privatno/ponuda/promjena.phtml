@@ -1,0 +1,78 @@
+<form class="log-in-form" method="POST"
+action="/ponuda/promjeni">
+ 
+  
+  <label>Naziv
+    <input type="text" id="naziv" name="naziv" value="<?php 
+    echo $jelo->naziv;
+    ?>">
+  </label>
+
+
+  <label for="kategorija">Kategorija</label>
+  <select name="kategorija" id="kategorija">
+    <option <?php 
+    if($jelo->kategorija==='Juha'){
+      echo ' selected="selected" ';
+    }
+    ?> value="Juha">Juha</option>
+
+    <option <?php 
+    if($jelo->kategorija==='Glavno jelo 1'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Glavno jelo 1">Glavno jelo 1</option>
+
+    <option <?php 
+    if($jelo->kategorija==='Glavno jelo 2'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Glavno jelo 2">Glavno jelo 2</option>
+
+    <option <?php 
+    if($jelo->kategorija==='Glavno jelo 3'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Glavno jelo 3">Glavno jelo 3</option>
+
+    <option <?php 
+    if($jelo->kategorija==='Riba'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Riba">Riba</option>   
+
+    <option <?php 
+    if($jelo->kategorija==='Prilog'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Prilog">Prilog</option>
+
+    <option <?php 
+    if($jelo->kategorija==='Salata'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Salata">Salata</option>
+
+    <option <?php 
+    if($jelo->kategorija==='Desert'){
+      echo ' selected="selected" ';
+    }
+    ?>value="Desert">Desert</option>
+  </select>
+
+  <label>Cijena
+    <input type="number" id="cijena" name="cijena" value="<?php 
+    echo $jelo->cijena;
+    ?>">
+  </label>
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/ponuda/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Promjeni podatke"></input>
+    </div>
+  </div>
+</form>
+<?php echo $poruka; ?>

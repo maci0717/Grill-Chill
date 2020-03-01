@@ -1,0 +1,21 @@
+<form class="log-in-form" method="POST" action="/ponuda/dodajnovo">
+
+
+  <label> Naziv Jela <input type="text" id="naziv" name="naziv"> </label>
+  <label> Cijena <input type="number" id="cijena" name="cijena"> </label>
+
+  <label for="kategorija">Kategorija</label>
+  <select name="kategorija" id="kategorija">
+    <option value="Juha">Juha</option>
+    <option value="Glavno jelo 1">Glavno jelo 1</option>
+    <option value="Glavno jelo 2">Glavno jelo 2</option>
+    <option value="Glavno jelo 3">Glavno jelo 3</option>
+    <option value="Riba">Riba</option>   
+    <option value="Prilog">Prilog</option>
+    <option value="Salata">Salata</option>
+    <option value="Desert">Desert</option>
+  </select>
+
+  <p><input type="submit" class="button expanded" value="Dodaj jelo"></input></p>
+</form>
+<?php echo $poruka; ?>

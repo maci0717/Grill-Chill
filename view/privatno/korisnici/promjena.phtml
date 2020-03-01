@@ -1,0 +1,67 @@
+<form class="log-in-form" method="POST"
+action="/korisnici/promjeni">
+ <label>Email
+    <input type="email" id="email" name="email" value="<?php 
+    echo $korisnik->email;
+    ?>">
+  </label>
+  
+  <label>Ime
+    <input type="text" id="ime" name="ime" value="<?php 
+    echo $korisnik->ime;
+    ?>">
+  </label>
+
+  <label>Prezime
+    <input type="text" id="prezime" name="prezime" value="<?php 
+    echo $korisnik->prezime;
+    ?>">
+  </label>
+
+  <label for="status">Status</label>
+  <select name="status" id="status">
+    <option <?php 
+    if($korisnik->status==='gost'){
+      echo ' selected="selected" ';
+    }
+    ?> value="gost">Gost</option>
+    
+    <option <?php 
+    if($korisnik->status==='admin'){
+      echo ' selected="selected" ';
+    }
+    ?> value="admin">Administrator</option>
+
+    <option <?php 
+    if($korisnik->status==='konobar'){
+      echo ' selected="selected" ';
+    }
+    ?>value="konobar">Konobar</option>
+
+    <option <?php 
+    if($korisnik->status==='kuhar'){
+      echo ' selected="selected" ';
+    }
+    ?>value="kuhar">Kuhar</option>
+  </select>
+  
+ 
+  <label for="aktivan">Aktivan</label>
+  <select name="aktivan" id="aktivan">
+    <option value="0">Ne</option>
+    <option value="1">Da</option>
+</select>
+
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/korisnici/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Promjeni korisnika"></input>
+    </div>
+  </div>
+  <input type="hidden" name="sifra" 
+  value="<?php echo $korisnik->sifra ?>">
+</form>
+<?php echo $poruka; ?>

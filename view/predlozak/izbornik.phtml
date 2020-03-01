@@ -1,0 +1,43 @@
+<!-- Početak izbornik -->
+<h1 style="text-align: center;background-color: rgb(190, 57, 9);color: rgba(255, 255, 255, 0.534);font-weight: bold;">GRILL & CHILL</h1>
+<div class="title-bar" data-responsive-toggle="example-animated-menu" data-hide-for="medium">
+<button class="menu-icon" type="button" data-toggle></button>
+<div class="title-bar-title" style="background-color: orange;"><?php echo APP::config('nazivAPP'); ?></div>
+</div>
+<div class="top-bar" id="example-animated-menu" data-animate="hinge-in-from-top spin-out" >
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu > 
+            <li class="menu-text show-for-large">
+            <?php echo APP::config('nazivAPP'); ?>
+            </li>
+            <li><a href="/">Početna</a></li>
+            <?php if(isset($_SESSION['korisnik'])):?>
+                <?php if($_SESSION['korisnik']->status==='admin'):?>
+                    <li><a href="/korisnici/index">Korisnici</a></li>
+                <?php else:?>
+                    <li><a href="/index/profil">Profil</a></li>
+                <?php endif;?>
+                <li><a href="/ponuda/index">Ponuda</a></li>         
+            <?php endif;?>
+            
+            <?php if(isset($_SESSION['korisnik']) && $_SESSION['korisnik']->status==='gost'):?>
+            <li><a href="/index/kosara">Košara</a></li>
+            <?php elseif(isset($_SESSION['korisnik'])):?>
+                <li><a href="/narudzbe/index">Narudžbe</a></li>
+            <?php endif;?>
+            <li><a href="/index/onama">O nama</a></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li>
+            <?php if(!isset($_SESSION['korisnik'])): ?>
+                <a href="/index/prijava">Prijava</a>
+            <?php else:?>
+                <a href="/index/odjava">Odjavi se</a>
+            <?php endif;?>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Kraj izbornik -->

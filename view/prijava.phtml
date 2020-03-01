@@ -1,0 +1,26 @@
+<div style="width: 48%; float: left; box-sizing: border-box;">
+    <form class="log-in-form" method="POST" action="/index/autorizacija">
+  
+        <label >Email
+          <input type="email" id="email" name="email" value="<?php echo $email ?>">
+        </label>
+
+        <label >Password
+          <input type="password" id="lozinka" name="lozinka">
+        </label>
+
+        <?php echo $poruka; ?>
+        <p><input type="submit" class="button expanded"  value="PRIJAVA" style="background-color: orange;"></input></p>
+  
+    </form>
+</div>
+
+<div style="width: 48%; float: right; box-sizing: border-box; padding: 15px">
+  <p>Registirajte se i skupljajte Grill bodove kako bi ostvarili popust ili besplatan obrok.</p>
+  <a href="/index/registracija"><input type="button" class="button expanded" value="REGISTRACIJA" style="background-color: orange;"></input></a>
+
+  <p>Ukoliko umirete od gladi, naručite odmah</p>
+  <a href="/index/gostoje"><input type="button" class="button expanded" value="UMIREM OD GLADI" style="background-color: orange;"></input></a>
+  
+
+</div>  

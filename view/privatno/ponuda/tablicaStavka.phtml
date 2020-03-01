@@ -1,0 +1,30 @@
+<tr>
+    <td title="naziv">
+        <span style="font-size: 1.4em;"><?php echo $red->naziv?></span>
+    </td>
+    <td style="text-align: left;" title="kategorija"><?php echo $red->kategorija?></td>
+    <td style="text-align: left;" title="cijena"><?php echo $red->cijena . 'kn'?></td>
+    
+    <td>
+    
+    <?php 
+    if($_SESSION['korisnik']->status==='admin')
+    { ?>
+     
+    <!-- Uređivanje jela -->
+    <a href="/ponuda/promjena?sifra=<?php echo $red->sifra ?>">
+    <i class="fas fa-pencil-alt fa-2x" style="color: orange;" title="Izmjeni"></i></a>
+        
+    <!-- Brisanje jela -->
+    <a onclick="return confirm('Sigurno zelis obrisati <?php echo $red->naziv ?> ');" 
+    href="/ponuda/obrisi?sifra=<?php echo $red->sifra ?>">
+    <i class="far fa-times-circle fa-2x" style="color: orange;" title="Ukloni"></i></a>
+
+    <?php 
+    } elseif($_SESSION['korisnik']->status==='gost')
+    {?>
+    <a href="#"><i class="fas fa-drumstick-bite fa-2x" style="color: orange;" title="Stavi u košaru"></i></a>    
+    <?php 
+    }?>
+    </td>
+</tr>

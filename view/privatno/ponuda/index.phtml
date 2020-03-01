@@ -1,0 +1,24 @@
+<?php 
+    if($_SESSION['korisnik']->status==='admin')
+    { ?>
+    <a class="button expanded" style="background-color: orange;"href="/ponuda/novo">Dodaj novo jelo</a>
+    <?php
+    }?>
+
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Vrsta</th>
+            <th>Cijena</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>

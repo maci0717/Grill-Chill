@@ -1,0 +1,31 @@
+<?php 
+    if($_SESSION['korisnik']->status==='admin')
+    { ?>
+    <a class="button expanded" style="background-color: orange;"href="/korisnici/novi">Dodaj korisnika</a>
+    <?php
+    }?>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>E-mail</th>
+            <th>Status</th>
+            <th>Aktivan</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>
+
+
+
+
