@@ -1,0 +1,29 @@
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Količina</th>
+            <th>Cijena</th>
+            <th>Vrijeme pripreme</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        $ukupnaCijena=0;
+        $maxVrijemeCekanja=0;
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>
+
+<?php 
+    echo 'Ukupna cijena narudžbe iznosi: ' . $ukupnaCijena . '<br>';
+    echo 'Vrijeme čekanja narudžbe: ' . $maxVrijemeCekanja  . ' minuta<br>';
+    echo 'Na poleđini tableta Vam piše broj stola: ' . $red->stol .'<br>'; //trebam uvesti select i popis stolova iz baze
+ ?>
+
+<a class="button" style="background-color: orange;" href="#">Naruči</a>
+
