@@ -6,10 +6,27 @@ class PonudaController extends AutorizacijaController
     DIRECTORY_SEPARATOR . 'ponuda' .
     DIRECTORY_SEPARATOR;
 
+    public function trazi()
+    {
+        
+        $podaci = Ponuda::trazi($_GET['uvjet']);
+
+        if(count($podaci)===0)
+        {
+            $podaci = Ponuda::trazi($_GET['uvjet']);
+        }
+
+        $this->view->render($this->viewDir . 'index',[
+            'podaci'=>$podaci,
+            'uvjet' => $_GET['uvjet'],
+           ]);
+    }
+
+    
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-         'podaci'=>Ponuda::readAll()
+            'podaci'=>Ponuda::readAll(),
      ]);
     }
 
@@ -20,16 +37,28 @@ class PonudaController extends AutorizacijaController
         );
     }
 
+    public function dodajukos()
+    {
+        $podaci = Ponuda::trazi($_GET['uvjet']);
+        $jelo = Ponuda::read($_GET['sifra']);
+        $kolicina=$_GET['kolicina'];
+        $sifra_ponude=$jelo->sifra;
+        $sifra_narudzbe=Ponuda::createNar();
+        Ponuda::kos($sifra_narudzbe, $sifra_ponude, $kolicina);
+        $this->view->render($this->viewDir . 'index',[
+            'podaci'=>$podaci,
+            'uvjet' => $_GET['uvjet'],
+           ]);
+    }
+
     public function dodajnovo()
     {
-        //prvo dođu sve silne kontrole
         Ponuda::create();
         $this->index();
     }
 
     public function obrisi()
     {
-        //prvo dođu silne kontrole
         Ponuda::delete();
         //$this->index();
         header('location: /ponuda/index');
@@ -52,7 +81,6 @@ class PonudaController extends AutorizacijaController
 
     public function promjeni()
     {
-        // I OVDJE DOĐU SILNE KONTROLE
         Ponuda::update();
         header('location: /ponuda/index');
     }
