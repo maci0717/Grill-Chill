@@ -17,11 +17,23 @@
                 <?php else:?>
                     <li><a href="/index/profil">Profil</a></li>
                 <?php endif;?>
-                <li><a href="/ponuda/index">Ponuda</a></li>         
-            <?php endif;?>
+                <li><a href="/ponuda/trazi?uvjet=Juha">Menu</a>
+                    <ul class="vertical menu">
+                        <li><a href="/ponuda/trazi?uvjet=Juha">Juha</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Glavno jelo 1">Glavno jelo 1</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Glavno jelo 2">Glavno jelo 2</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Glavno jelo 3">Glavno jelo 3</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Riba">Riba</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Prilog">Prilog</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Salata">Salata</a></li>
+                        <li><a href="/ponuda/trazi?uvjet=Desert">Desert</a></li>
+                    </ul>
+                </li>                  
+                <?php endif;?>
+
             
             <?php if(isset($_SESSION['korisnik']) && $_SESSION['korisnik']->status==='gost'):?>
-            <li><a href="/index/kosara">Košara</a></li>
+            <li><a href="/kosara/index">Košara</a></li>
             <?php elseif(isset($_SESSION['korisnik'])):?>
                 <li><a href="/narudzbe/index">Narudžbe</a></li>
             <?php endif;?>
