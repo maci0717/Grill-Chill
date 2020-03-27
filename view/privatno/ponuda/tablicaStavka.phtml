@@ -1,12 +1,12 @@
 <tr>
-    <td title="naziv">
-        <span style="font-size: 1.4em;"><?php echo $red->naziv?></span>
+<td title="slika"> <img src="<?php echo $red->slika?>"></td>
+    <td title="naziv" >
+        <span style="font-size: 1.4em;"> <h3><?php echo $red->naziv?></h3> <?php echo $red->opis?></span>
     </td>
+    <td style="text-align: left;" title="vrijeme"><?php echo $red->vrijeme?></td>
     <td style="text-align: left;" title="kategorija"><?php echo $red->kategorija?></td>
     <td style="text-align: left;" title="cijena"><?php echo $red->cijena . 'kn'?></td>
-    
     <td>
-    
     <?php 
     if($_SESSION['korisnik']->status==='admin')
     { ?>
@@ -23,8 +23,30 @@
     <?php 
     } elseif($_SESSION['korisnik']->status==='gost')
     {?>
-    <a href="#"><i class="fas fa-drumstick-bite fa-2x" style="color: orange;" title="Stavi u košaru"></i></a>    
+   
+   
+   <button class="button" data-open="modalDodaj">
+    <i id="<?php echo $red->sifra . '_' . $red->kategorija ?>" class="fas fa-drumstick-bite fa-2x" style="color: orange;" ></i></button>   
     <?php 
     }?>
     </td>
 </tr>
+
+<div class="reveal" id="modalDodaj" data-reveal>
+  <h3 id="pitanje"></h3>
+  <select id="test12">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+  </select>
+  <a id="linkDodavanje" class="button">DA</a>
+  <a id="odustani" class="button">NE</a>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+

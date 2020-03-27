@@ -1,14 +1,32 @@
 <?php 
     if($_SESSION['korisnik']->status==='admin')
     { ?>
+
     <a class="button expanded" style="background-color: orange;"href="/ponuda/novo">Dodaj novo jelo</a>
     <?php
     }?>
 
+
+<ul class="dropdown menu" data-dropdown-menu>
+<li class="menu-text show-for-large">MENU</li>
+    <li><a href="/ponuda/trazi?uvjet=Juha">Juha</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Glavno jelo 1">Glavno jelo 1</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Glavno jelo 2">Glavno jelo 2</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Glavno jelo 3">Glavno jelo 3</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Riba">Riba</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Prilog">Prilog</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Salata">Salata</a></li>
+    <li><a href="/ponuda/trazi?uvjet=Desert">Desert</a></li>
+</ul>
+
+
+<div class="grid-x grid-margin-x">
 <table>
     <thead>
         <tr>
+            <th>Slika</th>
             <th>Naziv</th>
+            <th>Vrijeme pripreme</th>
             <th>Vrsta</th>
             <th>Cijena</th>
             <th>Akcija</th>
@@ -22,3 +40,44 @@
         ?>
     </tbody>
 </table>
+</div>
+<?php 
+//Napravljen indeksni niz kako bi po indeksu mogao ici na pretkodnu ili sljedecu kategoriju
+    $kategorije=['','Juha', 'Glavno jelo 1', 'Glavno jelo 2', 'Glavno jelo 3', 'Riba','Prilog', 'Salata', 'Desert',''];
+    $i=1;
+
+while($kategorije)
+{
+    if($_GET['uvjet']==$kategorije[$i])
+    break;
+    $i++;
+}
+?>
+
+<nav>
+    <ul class="pagination text-center">
+        <li class="pagination-previous">
+        <?php if($i===1): ?>
+            <a href="#"></a>
+        <?php  else:  ?>
+            <a href="trazi?uvjet=<?php echo $kategorije[$i-1] ?>"> <?php echo $kategorije[$i-1] ?></a>
+            <?php endif;?>
+        </li>
+
+        <li style="background-color: orange;"class="current">
+            <span class="show-for-sr" >Nalazite se na stranici</span>
+            <?php 
+            echo $_GET['uvjet'];
+            ?>
+        </li>
+
+        <li class="pagination-next">
+        <?php if($i===8): ?>
+            <a href="#"></a>
+        <?php  else:  ?>
+            <a href="trazi?uvjet=<?php echo $kategorije[$i+1] ?>" > <?php echo$kategorije[$i+1]?></a>
+            <?php endif;?>
+        </li>
+    </ul>
+</nav>
+
