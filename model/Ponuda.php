@@ -2,6 +2,71 @@
 
 class Ponuda
 {
+    /*
+    public static function ukupnoStranica($uvjet)
+    {
+        $uvjet='%'.$uvjet.'%';
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        
+        select count(a.sifra) from ponuda a 
+        left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
+        where a.kategorija like :uvjet'
+        );
+        $izraz->bindParam('uvjet',$uvjet);
+        $izraz->execute();
+        $ukupnoRezultata=$izraz->fetchColumn();
+        return ceil($ukupnoRezultata / App::config('rezultataPoStranici'));
+    }
+    */
+
+    public static function trazi($uvjet)
+    {
+        $uvjet='%'.$uvjet.'%';
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        
+        select a.sifra, a.naziv, a.slika, 
+        a.opis, a.vrijeme, a.kategorija, a.cijena, b.kolicina
+        from ponuda a left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
+        left join narudzba c on b.narudzba_sifra=c.sifra
+        where a.kategorija like :uvjet
+        group by a.sifra, a.naziv, a.opis, 
+        a.slika, a.vrijeme, a.kategorija, a.cijena, b.kolicina 
+        
+        ');
+        $izraz->bindParam('uvjet',$uvjet);
+        $izraz->execute();
+
+        return $izraz->fetchAll();
+    }
+
+    public static function createNar()
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        insert into narudzba (stol) values (1)
+        ');
+        $izraz->execute();  
+        return $veza->lastInsertId();
+    }
+
+    public static function kos($sifra_narudzbe, $sifra_ponude, $kolicina)
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        
+        insert into narudzba_ponuda (narudzba_sifra,ponuda_sifra, kolicina) values (:sifra_narudzbe,:sifra_ponude, :kolicina)
+        
+        ');
+        $izraz->bindParam('sifra_ponude',$sifra_ponude);
+        $izraz->bindParam('sifra_narudzbe',$sifra_narudzbe);
+        $izraz->bindParam('kolicina',$kolicina);
+        $izraz->execute();
+        
+    }
+
+
     public static function readAll()
     {
         $veza = DB::getInstanca();
@@ -53,5 +118,7 @@ class Ponuda
         where sifra=:sifra');
         $izraz->execute($_POST);
     }
+
+   
 
 }
