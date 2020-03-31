@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Broj narudžbe</th>
+            <th>Cijena</th>
+            <th>Stol</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>
+

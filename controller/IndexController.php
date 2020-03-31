@@ -76,13 +76,11 @@ class IndexController extends Controller
 
     public function index()
     {
-        $poruka='';
-        $kod='';
+        
 
-       
         $this->view->render('pocetna',[
-            'p'=>$poruka,
-            'k'=>$kod]
+            'popis'=>[],
+            ]
         );
 
 

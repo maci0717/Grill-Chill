@@ -59,7 +59,6 @@ class App
            // echo 'HGSS';
         }
 
-
     }
 
     public static function config($kljuc)

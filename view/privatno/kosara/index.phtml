@@ -11,6 +11,7 @@
     <tbody>
         <?php 
         $ukupnaCijena=0;
+        $minVrijemeCekanja=0;
         $maxVrijemeCekanja=0;
         foreach($podaci as $red){
             include 'tablicaStavka.phtml';
@@ -20,10 +21,12 @@
 </table>
 
 <?php 
+ $maxVrijemeCekanja = $minVrijemeCekanja+10;
     echo 'Ukupna cijena narudžbe iznosi: ' . $ukupnaCijena . '<br>';
-    echo 'Vrijeme čekanja narudžbe: ' . $maxVrijemeCekanja  . ' minuta<br>';
+    echo 'Vrijeme čekanja narudžbe: ' . $minVrijemeCekanja . ' - ' . $maxVrijemeCekanja . ' minuta<br>';
     echo 'Na poleđini tableta Vam piše broj stola: ' . $red->stol .'<br>'; //trebam uvesti select i popis stolova iz baze
  ?>
 
 <a class="button" style="background-color: orange;" href="#">Naruči</a>
+
 

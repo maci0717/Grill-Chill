@@ -1,8 +1,10 @@
 <tr>
     <td title="Naziv"><?php echo $red->naziv?></td>
     <td title="Kolicina"><?php echo $red->kolicina?></td>
-    <td style="text-align: left;" title="Cijena"><?php $ukupnaCijena+=$red->cijena; echo $red->cijena?></td>
-    <td style="text-align: left;" title="Vrijeme"><?php if($maxVrijemeCekanja<$red->vrijeme) $maxVrijemeCekanja=$red->vrijeme; echo $red->vrijeme?></td>
+    <td style="text-align: left;" title="Cijena">
+        <?php $ukupnaCijena+=$red->kolicina*$red->cijena; echo $red->kolicina . 'x' . $red->cijena .' kn';?></td>
+    <td style="text-align: left;" title="Vrijeme">
+        <?php if($minVrijemeCekanja<$red->vrijeme) $minVrijemeCekanja=$red->vrijeme; echo $red->vrijeme?></td>
     <td title="Makni iz košare"><a href="/kosara/obrisi?sifra=<?php echo $red->sifra ?>"><i class="fas fa-times fa-2x" style="color: orange;"></i></a></td> 
 </tr>
 

@@ -11,7 +11,9 @@ class View
 
     public function render($stranica,$parametri=[])
     {
+        
         ob_start(); //ne šalji prema klijentu, nego bufferiraj
+        $meniKategorije=Kategorija::readAll();
         extract($parametri);
         include BP . 'view' . DIRECTORY_SEPARATOR . $stranica . '.phtml';
         $sadrzaj = ob_get_clean(); //sve što si skupio dodjeli varijabli $sadrzaj

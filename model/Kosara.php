@@ -11,7 +11,7 @@
         select c.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, c.stol
         from ponuda a left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
         left join narudzba c on b.narudzba_sifra=c.sifra
-        where a.sifra>1
+        where b.kolicina>0
         ');
         $izraz->execute();
         return $izraz->fetchAll();

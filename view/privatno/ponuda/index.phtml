@@ -6,7 +6,7 @@
     <?php
     }?>
 
-
+<!-- Izbornik MENU-a u samom MENU 
 <ul class="dropdown menu" data-dropdown-menu>
 <li class="menu-text show-for-large">MENU</li>
     <li><a href="/ponuda/trazi?uvjet=Juha">Juha</a></li>
@@ -18,6 +18,56 @@
     <li><a href="/ponuda/trazi?uvjet=Salata">Salata</a></li>
     <li><a href="/ponuda/trazi?uvjet=Desert">Desert</a></li>
 </ul>
+-->
+<!-- 
+P
+O
+P
+R
+A
+V
+I
+T
+I
+Napravljen indeksni niz kako bi po indeksu mogao ici na pretkodnu ili sljedecu kategoriju
+-->
+<?php
+    $kategorije=['','Juha', 'Glavno jelo 1', 'Glavno jelo 2', 'Glavno jelo 3', 'Riba','Prilog', 'Salata', 'Desert',''];
+    $i=1;
+
+while($kategorije)
+{
+    if($_GET['uvjet']==$kategorije[$i])
+    break;
+    $i++;
+}
+?>
+<nav>
+    <ul class="pagination text-center">
+        <li class="pagination-previous">
+        <?php if($i===1): ?>
+            <a href="#"></a>
+        <?php  else:  ?>
+            <a href="trazi?uvjet=<?php echo $kategorije[$i-1] ?>"> <?php echo $kategorije[$i-1] ?></a>
+            <?php endif;?>
+        </li>
+
+        <li style="background-color: orange;"class="current">
+            <span class="show-for-sr" >Nalazite se na stranici</span>
+            <?php 
+            echo $_GET['uvjet'];
+            ?>
+        </li>
+
+        <li class="pagination-next">
+        <?php if($i===8): ?>
+            <a href="#"></a>
+        <?php  else:  ?>
+            <a href="trazi?uvjet=<?php echo $kategorije[$i+1] ?>" > <?php echo$kategorije[$i+1]?></a>
+            <?php endif;?>
+        </li>
+    </ul>
+</nav>
 
 
 <div class="grid-x grid-margin-x">
@@ -41,18 +91,20 @@
     </tbody>
 </table>
 </div>
-<?php 
-//Napravljen indeksni niz kako bi po indeksu mogao ici na pretkodnu ili sljedecu kategoriju
-    $kategorije=['','Juha', 'Glavno jelo 1', 'Glavno jelo 2', 'Glavno jelo 3', 'Riba','Prilog', 'Salata', 'Desert',''];
-    $i=1;
+ 
+<!-- 
+P
+O
+P
+R
+A
+V
+I
+T
+I
+Napravljen indeksni niz kako bi po indeksu mogao ici na pretkodnu ili sljedecu kategoriju
+-->
 
-while($kategorije)
-{
-    if($_GET['uvjet']==$kategorije[$i])
-    break;
-    $i++;
-}
-?>
 
 <nav>
     <ul class="pagination text-center">

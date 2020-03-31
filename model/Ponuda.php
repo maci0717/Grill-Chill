@@ -27,12 +27,14 @@ class Ponuda
         $izraz = $veza->prepare('
         
         select a.sifra, a.naziv, a.slika, 
-        a.opis, a.vrijeme, a.kategorija, a.cijena, b.kolicina
-        from ponuda a left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
+        a.opis, a.vrijeme, d.nazivKat, a.cijena, b.kolicina
+        from ponuda a 
+        left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
         left join narudzba c on b.narudzba_sifra=c.sifra
-        where a.kategorija like :uvjet
+        left join kategorija d on a.kategorija=d.sifra
+        where d.nazivKat like :uvjet
         group by a.sifra, a.naziv, a.opis, 
-        a.slika, a.vrijeme, a.kategorija, a.cijena, b.kolicina 
+        a.slika, a.vrijeme, d.nazivKat, a.cijena, b.kolicina 
         
         ');
         $izraz->bindParam('uvjet',$uvjet);
@@ -56,7 +58,8 @@ class Ponuda
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        insert into narudzba_ponuda (narudzba_sifra,ponuda_sifra, kolicina) values (:sifra_narudzbe,:sifra_ponude, :kolicina)
+        insert into narudzba_ponuda (narudzba_sifra,ponuda_sifra, kolicina) values 
+        (:sifra_narudzbe,:sifra_ponude, :kolicina)
         
         ');
         $izraz->bindParam('sifra_ponude',$sifra_ponude);
@@ -65,6 +68,7 @@ class Ponuda
         $izraz->execute();
         
     }
+
 
 
     public static function readAll()
