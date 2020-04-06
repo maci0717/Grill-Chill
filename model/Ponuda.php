@@ -2,23 +2,6 @@
 
 class Ponuda
 {
-    /*
-    public static function ukupnoStranica($uvjet)
-    {
-        $uvjet='%'.$uvjet.'%';
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-        select count(a.sifra) from ponuda a 
-        left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
-        where a.kategorija like :uvjet'
-        );
-        $izraz->bindParam('uvjet',$uvjet);
-        $izraz->execute();
-        $ukupnoRezultata=$izraz->fetchColumn();
-        return ceil($ukupnoRezultata / App::config('rezultataPoStranici'));
-    }
-    */
 
     public static function trazi($uvjet)
     {
@@ -29,8 +12,8 @@ class Ponuda
         select a.sifra, a.naziv, a.slika, 
         a.opis, a.vrijeme, d.nazivKat, a.cijena, b.kolicina
         from ponuda a 
-        left join narudzba_ponuda b  on a.sifra=b.ponuda_sifra
-        left join narudzba c on b.narudzba_sifra=c.sifra
+        left join kosara_ponuda b  on a.sifra=b.ponuda_sifra
+        left join kosara c on b.kosara_sifra=c.sifra
         left join kategorija d on a.kategorija=d.sifra
         where d.nazivKat like :uvjet
         group by a.sifra, a.naziv, a.opis, 
@@ -43,14 +26,39 @@ class Ponuda
         return $izraz->fetchAll();
     }
 
-    public static function createNar()
+    public static function napraviKos($sifraJela)
     {
         $veza = DB::getInstanca();
+        $veza->beginTransaction();
         $izraz=$veza->prepare('
-        insert into narudzba (stol) values (1)
+        select cijena, vrijeme from ponuda where sifra=:sifraJela
         ');
-        $izraz->execute();  
-        return $veza->lastInsertId();
+        $izraz->execute(['sifraJela'=>$sifraJela]);
+        $cijVri= $izraz->fetch();
+        $vrijeme =  $cijVri->vrijeme;
+        $cijena = $cijVri->cijena;
+
+
+        $sessionID=session_id();
+        $izraz=$veza->prepare('
+            update kosara set cijena=:cijena, vrijeme=:vrijeme 
+            where sessionID=:sessionID
+        ');
+        $izraz->execute([
+            'sessionID'=>$sessionID,
+            'cijena'=>$cijena,
+            'vrijeme'=>$vrijeme
+            ]);
+            
+        $izraz=$veza->prepare('
+        select sifra from kosara where sessionID=:sessionID
+        ');
+        $izraz->execute(['sessionID'=>$sessionID]);
+        $sifraKosare = $izraz->fetch()->sifra;
+
+
+        $veza->commit();
+        return $sifraKosare; 
     }
 
     public static function kos($sifra_narudzbe, $sifra_ponude, $kolicina)
@@ -58,7 +66,7 @@ class Ponuda
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        insert into narudzba_ponuda (narudzba_sifra,ponuda_sifra, kolicina) values 
+        insert into kosara_ponuda (kosara_sifra,ponuda_sifra, kolicina) values 
         (:sifra_narudzbe,:sifra_ponude, :kolicina)
         
         ');

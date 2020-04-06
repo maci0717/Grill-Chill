@@ -63,6 +63,7 @@ class IndexController extends Controller
         unset($rezultat->lozinka);
         $_SESSION['korisnik']=$rezultat;
         //$this->view->render('privatno' . DIRECTORY_SEPARATOR . 'nadzornaPloca');
+        Kosara::kosaraID();
         $npc = new NadzornaplocaController();
         $npc->index();
     }
@@ -115,6 +116,7 @@ class IndexController extends Controller
     public function gostoje()
     {
         $gost=Korisnici::gostojubic(); 
+        Kosara::kosaraID();
         $_SESSION['korisnik']=$gost;
         $npc = new PonudaController();
         $npc->index();

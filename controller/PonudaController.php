@@ -36,8 +36,11 @@ class PonudaController extends AutorizacijaController
     
     public function index()
     {
+        $_GET['uvjet']='Juha';
+        $podaci = Ponuda::trazi($_GET['uvjet']);
         $this->view->render($this->viewDir . 'index',[
-            'podaci'=>Ponuda::readAll(),
+            'podaci'=>$podaci,
+            'uvjet' => $_GET['uvjet'],
      ]);
     }
 
@@ -54,13 +57,13 @@ class PonudaController extends AutorizacijaController
         $jelo = Ponuda::read($_GET['sifra']);
         $kolicina=$_GET['kolicina'];
         $sifra_ponude=$jelo->sifra;
-        $sifra_narudzbe=Ponuda::createNar();
+        $sifra_narudzbe=Ponuda::napraviKos($_GET['sifra']); 
         Ponuda::kos($sifra_narudzbe, $sifra_ponude, $kolicina);
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
             'uvjet' => $_GET['uvjet'],
            ]);
-    }
+    } 
 
     public function dodajnovo()
     {

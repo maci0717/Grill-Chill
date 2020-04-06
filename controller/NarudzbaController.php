@@ -10,7 +10,7 @@ class NarudzbaController extends AutorizacijaController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'podaci'=>Narudzba::readAll(),
+            'podaci'=>Narudzba::readAll(), 
      ]);
     }
-}
+} 

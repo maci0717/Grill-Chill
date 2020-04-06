@@ -13,7 +13,20 @@
                 'podaci'=>Kosara::readAll()
          ]);
         }
-       
+        
+        public function naruci()
+        {
+            //$vrijeme=$_GET['vrijeme'];
+            //$cijena=$_GET['cijena'];
+            //$sifraKos=$_GET['sifraKos'];
+           
+            //$vrijeme, $cijena, $sifraKos
+            Kosara::SID(); 
+            $this->view->render($this->viewDir . 'index', [
+                'poruka' => 'Uspjesno ste narucili',
+                'podaci'=>''
+            ]);
+        }
  
 
         public function obrisi()

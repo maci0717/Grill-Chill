@@ -24,10 +24,12 @@ class Korisnici
     public static function gostojubic()
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select sifra, ime, prezime,  email, status from korisnik where ime="gostoje"');
+        $izraz = $veza->prepare('select sifra, ime, prezime,  email, status, aktivan from korisnik where ime="gostoje"');
         $izraz->execute(['ime'=> 'gostoje']);
         return $izraz->fetch();
     }
+
+    
 
     public static function create()
     {
