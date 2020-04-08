@@ -63,7 +63,12 @@ class IndexController extends Controller
         unset($rezultat->lozinka);
         $_SESSION['korisnik']=$rezultat;
         //$this->view->render('privatno' . DIRECTORY_SEPARATOR . 'nadzornaPloca');
-        Kosara::kosaraID();
+        if($_SESSION['korisnik']->status==='gost')
+        {
+        session_regenerate_id();
+        Kosara::kreirajKosaru();
+        }
+
         $npc = new NadzornaplocaController();
         $npc->index();
     }
@@ -91,6 +96,11 @@ class IndexController extends Controller
         $this->view->render('onama');
     }
 
+    public function ERA()
+    {
+        $this->view->render('ERA');
+    }
+
     public function profil()
     {
         $this->view->render('profil');
@@ -116,7 +126,8 @@ class IndexController extends Controller
     public function gostoje()
     {
         $gost=Korisnici::gostojubic(); 
-        Kosara::kosaraID();
+        session_regenerate_id();
+        Kosara::kreirajKosaru();
         $_SESSION['korisnik']=$gost;
         $npc = new PonudaController();
         $npc->index();

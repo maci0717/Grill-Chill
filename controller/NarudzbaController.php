@@ -9,8 +9,26 @@ class NarudzbaController extends AutorizacijaController
     
     public function index()
     {
+     
+        
         $this->view->render($this->viewDir . 'index',[
-            'podaci'=>Narudzba::readAll(), 
+            'podaciAdmin'=>Narudzba::readAll(),
+            'podaciKuhar'=>Narudzba::readKuhar(),
+            'podaciKonobar'=>Narudzba::readKonobar(),
+            'ponuda'=>Narudzba::readPonuda(), 
      ]);
+    }
+
+    public function spremno()
+    {
+        Narudzba::zapUSprem();
+
+        $this->view->render($this->viewDir . 'index',[
+            'podaciAdmin'=>Narudzba::readAll(),
+            'podaciKuhar'=>Narudzba::readKuhar(),
+            'podaciKonobar'=>Narudzba::readKonobar(),
+            'ponuda'=>Narudzba::readPonuda(), 
+     ]);
+        
     }
 } 

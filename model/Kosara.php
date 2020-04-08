@@ -3,18 +3,7 @@
     class Kosara
     {
     
-        public static function naruceno1()
-    {
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-
-        select a.sifra, b.sifra
         
-        ');
-        $izraz->execute();
-        return $izraz->fetch();
-    }
-
     public static function SID()
     {
         $korisnikID=$_SESSION['korisnik']->sifra;
@@ -40,7 +29,7 @@
         //$izraz->bindParam('cijena',$cijena);
         //$izraz->bindParam('sifraKos',$sifraKos);
        
-
+           
         $izraz = $veza->prepare('
         insert into narudzba (korisnik, kosara) values (:korisnikID, :sifraKos)
         ');
@@ -52,38 +41,51 @@
         $veza->commit();
     }
 
-    public static function kosaraID()
+    public static function kreirajKosaru()
     {
+        $sessionID = session_id();
         $veza = DB::getInstanca();
-        $sessionID= session_id();
+        $veza->beginTransaction();
+        
         $izraz=$veza->prepare('
-            insert into kosara (sessionID) values (:sessionID)
+            select sifra from kosara where sessionID=:sessionID
         ');
-        $izraz->execute(['sessionID'=>$sessionID]);        
+        $izraz->execute(['sessionID'=>$sessionID]);  
+        $test = $izraz->fetch()->sifra;
+        
+        if(!$test)
+        {
+            $izraz=$veza->prepare('
+                insert into kosara (sessionID) values (:sessionID)
+            ');
+            $izraz->execute(['sessionID'=>$sessionID]);  
+        }
+
+        $veza->commit();      
     }
 
         
     public static function readAll()
     {
+        $sessionID=session_id();
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        select c.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, c.stol
+        select a.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, c.stol, c.sifra as sifraKos
         from ponuda a 
         left join kosara_ponuda b  on a.sifra=b.ponuda_sifra
         left join kosara c on b.kosara_sifra=c.sifra
-        where b.kolicina>0
+        where sessionID=:sessionID
         ');
-        $izraz->execute();
+        $izraz->execute(['sessionID'=>$sessionID]);
         return $izraz->fetchAll();
     }
 
     public static function delete()
     {
-        
+
             $veza = DB::getInstanca();
             $izraz=$veza->prepare('
-            delete from kosara_ponuda where kosara_sifra=:sifra;
-            delete from kosara where sifra=:sifra;
+            delete from kosara_ponuda where ponuda_sifra=:sifra;
             ');
             $izraz->execute($_GET);
       
