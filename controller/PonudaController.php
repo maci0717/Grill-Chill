@@ -6,16 +6,7 @@ class PonudaController extends AutorizacijaController
     DIRECTORY_SEPARATOR . 'ponuda' .
     DIRECTORY_SEPARATOR;
     
-    //Ovo vjv ne treba...
-    public function kategorije()
-    {
-       
-      
-        $this->view->render($this->viewDir . 'index',[
-            'popis'=>[],
-           ]);
-    }
-
+  
 
     public function trazi()
     {

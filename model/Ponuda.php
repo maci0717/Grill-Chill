@@ -90,7 +90,7 @@ class Ponuda
     public static function read($sifra)
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select sifra, naziv, kategorija, cijena from ponuda where sifra=:sifra');
+        $izraz = $veza->prepare('select sifra, naziv, slika, opis, vrijeme, kategorija, cijena from ponuda where sifra=:sifra');
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
     }
@@ -98,7 +98,8 @@ class Ponuda
     public static function create()
     {
         $veza = DB::getInstanca();
-        $izraz=$veza->prepare('insert into ponuda (naziv, cijena, kategorija) values (:naziv, :cijena, :kategorija)');
+        $izraz=$veza->prepare('insert into ponuda (naziv, slika, opis, vrijeme, cijena, kategorija) values 
+        (:naziv, :slika, :opis, :vrijeme, :cijena, :kategorija)');
         $izraz->execute($_POST);
         /* NAČIN 2
         $izraz->execute([
@@ -125,10 +126,23 @@ class Ponuda
 
     public static function update()
     {
+       
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('update ponuda set naziv=:naziv, cijena=:cijena, kategorija=:kategorija
-        where sifra=:sifra');
-        $izraz->execute($_POST);
+        $izraz = $veza->prepare('
+        update ponuda set naziv=:naziv, slika=:slika, opis=:opis, 
+        vrijeme=:vrijeme, kategorija=:kategorija, cijena=:cijena
+        where sifra=:sifra
+        ');
+        $izraz->execute([
+            'sifra' => $_GET['sifra'],
+            'naziv' => $_POST['naziv'],
+            'slika' => $_POST['slika'],
+            'opis' => $_POST['opis'],
+            'vrijeme' => $_POST['vrijeme'],
+            'kategorija' => $_POST['kategorija'],
+            'cijena' => $_POST['cijena'],
+            
+        ]);
     }
 
    

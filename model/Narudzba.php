@@ -7,12 +7,12 @@
         {
             $veza = DB::getInstanca();
             $izraz = $veza->prepare('
-            select a.sifra, a.vrijemeNarudzbe, concat(c.ime, \' \' ,c.prezime) as korisnik, 
-            b.stol, b.cijena, a.status, b.sifra as sifraKos
-            from narudzba a
-            left join kosara b on a.kosara=b.sifra
-            left join korisnik c on a.korisnik=c.sifra
-           
+                select a.sifra, a.vrijemeNarudzbe, concat(c.ime, \' \' ,c.prezime) as korisnik, 
+                b.stol, b.cijena, d.stanje, b.sifra as sifraKos
+                from narudzba a
+                left join kosara b on a.kosara=b.sifra
+                left join korisnik c on a.korisnik=c.sifra
+                left join status d on a.status=d.sifra
             ');
             $izraz->execute();
             return $izraz->fetchAll();
@@ -23,11 +23,12 @@
             $veza = DB::getInstanca();
             $izraz = $veza->prepare('
             select a.sifra, a.vrijemeNarudzbe, concat(c.ime, \' \' ,c.prezime) as korisnik, 
-            b.stol, b.cijena, a.status, b.sifra as sifraKos
+            b.stol, b.cijena, d.stanje, b.sifra as sifraKos
             from narudzba a
             left join kosara b on a.kosara=b.sifra
             left join korisnik c on a.korisnik=c.sifra
-            where a.status=\'Zaprimljeno\' or a.status=\'Spremno\'
+            left join status d on a.status=d.sifra
+            where d.stanje=\'Zaprimljeno\' or d.stanje=\'Spremno\'
             ');
             $izraz->execute();
             return $izraz->fetchAll();
@@ -38,11 +39,12 @@
             $veza = DB::getInstanca();
             $izraz = $veza->prepare('
             select a.sifra, a.vrijemeNarudzbe, concat(c.ime, \' \' ,c.prezime) as korisnik, 
-            b.stol, b.cijena, a.status, b.sifra as sifraKos
+            b.stol, b.cijena, d.stanje, b.sifra as sifraKos
             from narudzba a
             left join kosara b on a.kosara=b.sifra
             left join korisnik c on a.korisnik=c.sifra
-            where a.status=\'Spremno\' or a.status=\'Posluzeno\'
+            left join status d on a.status=d.sifra
+            where d.stanje=\'Spremno\' or d.stanje=\'Posluzeno\'
             ');
             $izraz->execute();
             return $izraz->fetchAll();
@@ -67,7 +69,7 @@
         {
             $veza = DB::getInstanca();
             $izraz = $veza->prepare('
-            update narudzba set status=\'Spremno\'
+            update narudzba set status=2
             where sifra=:sifra
 
             ');

@@ -51,9 +51,9 @@
             select sifra from kosara where sessionID=:sessionID
         ');
         $izraz->execute(['sessionID'=>$sessionID]);  
-        $test = $izraz->fetch()->sifra;
+       
         
-        if(!$test)
+        if(!$izraz->fetch()->sifra)
         {
             $izraz=$veza->prepare('
                 insert into kosara (sessionID) values (:sessionID)
@@ -70,10 +70,11 @@
         $sessionID=session_id();
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        select a.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, c.stol, c.sifra as sifraKos
+        select a.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, d.brojStola, c.sifra as sifraKos
         from ponuda a 
         left join kosara_ponuda b  on a.sifra=b.ponuda_sifra
         left join kosara c on b.kosara_sifra=c.sifra
+        left join stol d on c.stol=d.sifra
         where sessionID=:sessionID
         ');
         $izraz->execute(['sessionID'=>$sessionID]);
@@ -90,6 +91,26 @@
             $izraz->execute($_GET);
       
     }
+
+    public static function stol()
+    {
+        
+        $veza = DB::getInstanca();
+        $sessionID=session_id();
+        $izraz=$veza->prepare('
+        update kosara set stol=:stol where sessonID=:sessionID
+        
+        ');
+        $izraz->execute([
+            'stol'=>$_GET['stol'],
+            'sessionID'=>$sessionID
+            ]);
+
+    }
+
+    
+
+    
 
 
     } 
