@@ -1,0 +1,89 @@
+<form class="log-in-form" method="POST"
+action="/narudzba/promjeni?sifra=<?php echo $narudzba->sifra ?>">
+
+  <label>Korisnik
+    <input type="text" id="korisnik" name="korisnik" value="<?php 
+    echo $narudzba->korisnik;
+    ?>">
+  </label>
+
+
+
+<label for="stanje">Stanje</label>
+  <select name="stanje" id="stanje">
+        <?php foreach($status as $stanje): ?>
+            <option 
+            <?php if($stanje->stanje==$narudzba->stanje){
+              echo 'selected="selected"';
+              }
+              ?> value="<?php echo $stanje->sifra ?>">
+              <?php echo $stanje->stanje ?>
+              </option>
+        <?php endforeach;?>
+    </select>
+
+
+
+  
+<label for="stol">Stol</label>
+            <select name="stol" id="stol">
+                <?php foreach($stol as $stolovi): ?>
+                    <option <?php 
+                        if($stolovi->sifra==$narudzba->stol){
+                            echo 'selected="selected"';
+                        }
+                        
+                        ?> value="<?php echo $stolovi->sifra ?>">
+                        <?php echo $stolovi->brojStola ?>
+                    </option>
+                <?php endforeach;?>
+            </select>
+
+
+
+
+    <!-- Brisati cijenu -->
+  <label>Cijena
+    <input type="number" id="cijena" name="cijena" value="<?php 
+    echo $narudzba->cijena;
+    ?>">
+  </label>
+
+  <label>Sifra Kosare
+    <input type="number" id="sifraKos" name="sifraKos" value="<?php 
+    echo $narudzba->sifraKos;
+    ?>">
+  </label>
+<hr>
+<h3>PONUDA</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Količina</th>
+            <th>Promjeni / Ukloni</th>
+        </tr>
+    </thead>
+    <tbody>
+  <?php 
+    foreach($ponuda as $ponuda){
+      include 'ponudaStavka.phtml';
+    }
+   ?>
+   </tbody>
+
+</table>
+    <a class="button" href="#">Dodaj jelo u ponudu</a>
+  
+  
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/narudzba/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" id="test" value="Promjeni podatke"></input>
+    </div>
+  </div>
+</form>
+<?php echo $poruka; ?>
+

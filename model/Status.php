@@ -56,5 +56,16 @@
         }
         
 
+        public static function test()
+        {
+            $veza = DB::getInstanca();
+            $izraz = $veza->prepare('update narudzba set status=:status
+            where sifra=:sifra');
+            $izraz->execute([ 
+                'sifra' => $_GET['sifraNar'],
+                'status' => $_GET['status'],
+            ]);
+        }
+
 
     } 

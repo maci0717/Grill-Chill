@@ -1,0 +1,12 @@
+<tr>
+    <td title="Sifra"><?php echo $red->sifra?></td>
+    <td style="text-align: left;" title="nazivKat"><?php echo $red->nazivKat?></td>
+    <td>
+
+    <!-- Brisanje kategorije -->
+    <a onclick="return confirm('Sigurno zelis obrisati <?php echo $red->nazivKat ?> ');" 
+    href="/kategorija/obrisi?sifra=<?php echo $red->sifra ?>">
+    <i class="far fa-times-circle fa-2x" style="color: orange;" title="Ukloni"></i></a>
+    
+    </td>
+</tr>

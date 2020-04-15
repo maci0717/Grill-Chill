@@ -2,17 +2,30 @@
     <thead>
         <tr>
             <th>Broj narudžbe</th>
-            <th>Cijena</th>
+            <th>Vrijeme narudžbe</th>
+            <th>Gost</th>
             <th>Stol</th>
+            <th>Cijena</th>
             <th>Status</th>
+            <th>Promjeni / Obriši</th>
         </tr>
     </thead>
     <tbody>
         <?php 
-        foreach($podaci as $red){
+        if($_SESSION['korisnik']->status=='admin')
+        foreach($podaciAdmin as $red)
+        {
+            include 'tablicaStavka.phtml';
+        }elseif($_SESSION['korisnik']->status=='kuhar')
+        foreach($podaciKuhar as $red)
+        {
+            include 'tablicaStavka.phtml';
+        }elseif($_SESSION['korisnik']->status=='konobar')
+        foreach($podaciKonobar as $red)
+        {
             include 'tablicaStavka.phtml';
         }
         ?>
     </tbody>
 </table>
-
+ 

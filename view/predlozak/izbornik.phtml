@@ -14,23 +14,17 @@
             <?php if(isset($_SESSION['korisnik'])):?>
                 <?php if($_SESSION['korisnik']->status==='admin'):?>
                     <li><a href="/korisnici/index">Korisnici</a></li>
+                    <li><a href="#">Upravljanje podacima</a>
+                        <ul class="vertical menu">
+                            <li><a href="/kategorija/index">Kategorije</a></li>
+                            <li><a href="/status/index">Status</a></li>
+                            <li><a href="/stol/index">Stolovi</a></li>
+                        </ul>
+                    </li>
                 <?php else:?>
-                    <li><a href="/index/profil">Profil</a></li>
+                    <li><a href="/profil/index">Profil</a></li>
                 <?php endif;?>
-                <!-- Stari MENU   
-                <li><a href="/ponuda/trazi?uvjet=Juha">Menu</a>
-                    <ul class="vertical menu">
-                        <li><a href="/ponuda/trazi?uvjet=Juha">Juha</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Glavno jelo 1">Glavno jelo 1</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Glavno jelo 2">Glavno jelo 2</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Glavno jelo 3">Glavno jelo 3</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Riba">Riba</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Prilog">Prilog</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Salata">Salata</a></li>
-                        <li><a href="/ponuda/trazi?uvjet=Desert">Desert</a></li>
-                    </ul>
-                </li> --> 
-                <!-- Novi MENU -->    
+                
                 <li><a href="/ponuda/trazi?uvjet=Juha">Menu</a>
                 
                 <ul class="vertical menu">
@@ -49,10 +43,14 @@
                 <li><a href="/narudzba/index">Narudžbe</a></li>
             <?php endif;?>
             <li><a href="/index/onama">O nama</a></li>
+            <li><a href="/index/ERA">ERA</a></li>
         </ul>
     </div>
     <div class="top-bar-right">
         <ul class="menu">
+        <?php if(isset($_SESSION['korisnik']) && $_SESSION['korisnik']->status==='gost'):?>
+            <li><a href="#">Grill bodovi: 0</a></li>
+            <?php endif;?>
             <li>
             <?php if(!isset($_SESSION['korisnik'])): ?>
                 <a href="/index/prijava">Prijava</a>

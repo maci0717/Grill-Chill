@@ -101,27 +101,12 @@ class IndexController extends Controller
         $this->view->render('ERA');
     }
 
-    public function profil()
-    {
-        $this->view->render('profil');
-    }
 
     public function kosara()
     {
         $this->view->render('kosara');
     }
 
-
-    public function json()
-    {
-        $niz=[];
-        $s=new stdClass();
-        $s->naziv='PHP programiranje';
-        $s->sifra=1;
-        $niz[]=$s;
-        //$this->view->render('onama',$niz);
-        echo json_encode($niz);
-    }
 
     public function gostoje()
     {

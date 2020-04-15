@@ -25,17 +25,15 @@
         }
 
         
- 
-        //radit ce vjv kad dodem do ovdje //ne treba
-        public function dodajStol()
+        
+        public function unosStola()
         {
 
-            echo 'tu sam';
-            //Kosara::stol();
+            Kosara::stol();
 
-            //$this->view->render($this->viewDir . 'index',[
-            //    'podaci'=>Kosara::readAll()
-         //]);
+            $this->view->render($this->viewDir . 'index',[
+                'podaci'=>Kosara::readAll()
+         ]);
 
         }
 

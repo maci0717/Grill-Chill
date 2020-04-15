@@ -57,4 +57,5 @@ class KorisniciController extends AutorizacijaController
         Korisnici::update();
         header('location: /korisnici/index');
     }
+
 }

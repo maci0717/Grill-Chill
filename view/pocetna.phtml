@@ -1,9 +1,15 @@
-Početna
-    <?php 
+
+
+
+<?php if($_SESSION['korisnik']->status=='admin'): ?>
+  
+<a href="#" class="button" style="background-color: orange;">Obriši završene narudzbe</a>
+
+<?php endif; ?>
     
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
-
-
-?>
+    <?php          
+        echo '<pre>';
+        print_r($_SESSION['korisnik']);
+        echo '</pre>';
+        echo session_id();
+    ?>

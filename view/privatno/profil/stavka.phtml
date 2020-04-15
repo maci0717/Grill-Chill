@@ -1,0 +1,30 @@
+<div class="large-4 cell" style="text-align: center;">
+    <div class="callout">
+
+    <?php
+            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR
+            . 'images' . DIRECTORY_SEPARATOR . 
+            'korisnici' . DIRECTORY_SEPARATOR 
+            . $podaci->sifra . '.png')):
+        ?>
+        <img class="slika"  id="p_<?php echo $podaci->sifra ?>" style="max-width: 200px" 
+        src="<?php echo APP::config('url'); ?>public/images/korisnici/<?php echo $podaci->sifra; ?>.png" 
+        alt="<?php echo $podaci->ime . ' ' . $podaci->prezime ?>" />
+            <?php else:?>
+                <img class="slika"  id="p_<?php echo $podaci->sifra ?>" style="max-width: 200px"
+                src="<?php echo APP::config('url'); ?>public/images/nepoznato.jpg" 
+                alt="Za polaznika nije postavljena slika" />
+            <?php endif;?> 
+
+        <h2><?php echo $podaci->ime ?>
+        <br /> <?php echo $podaci->prezime ?></h2>
+        <?php echo 'Grill bodovi: ' . $podaci->bodovi ?> <br />
+        <?php echo $podaci->email ?><br />
+        <?php echo $podaci->status ?>
+        <hr />
+        <a href="/profil/promjena?sifra=<?php echo $podaci->sifra ?>">
+        <i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
+        
+    </div>
+</div>
+

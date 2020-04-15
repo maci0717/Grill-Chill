@@ -1,18 +1,56 @@
- 
-<tr class="flip" id="g_<?php echo $red->sifra?>"> 
+<tr style="background-color: orange;"> 
     <td title="Broj narudžbe"><?php echo $red->sifra?></td>
+    <td style="text-align: left;" title="Stol"><?php echo $red->vrijemeNarudzbe?></td>
+    <td style="text-align: left;" title="Stol"><?php echo $red->korisnik?></td>
+    <td style="text-align: left;" title="Stol"><?php echo $red->brojStola?></td>
     <td style="text-align: left;" title="Cijena"><?php echo $red->cijena?></td>
-    <td style="text-align: left;" title="Stol"><?php echo $red->stol?></td>
-    <td style="text-align: left;" title="Status"><?php echo $red->status?></td> 
+  
+    <!-- Početak kolone status -->
+    <td style="text-align: left;" title="Status">
+    <?php  if($_SESSION['korisnik']->status=='kuhar'|| $_SESSION['korisnik']->status=='admin'):?>
+    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=1">
+    <i class="fas fa-list-ul fa-2x" 
+        <?php if($red->stanje=='Zaprimljeno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
+    <?php endif;  ?>
+    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=2">
+    <i class="fas fa-history fa-2x"
+        <?php if($red->stanje=='Spremno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
+    <?php if($_SESSION['korisnik']->status=='konobar' || $_SESSION['korisnik']->status=='admin'):    ?>
+    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=3">
+    <i class="fas fa-utensils fa-2x"
+        <?php if($red->stanje=='Posluzeno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
+    
+    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=4">
+    <i class="fas fa-wallet fa-2x"
+        <?php if($red->stanje=='Naplaceno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
+    <?php  endif; if( $_SESSION['korisnik']->status=='admin'):  ?>
+    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=5">
+    <i class="fas fa-check-circle fa-2x"
+        <?php if($red->stanje=='Gotovo'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
+    <?php endif;  ?>
+    </td>
+    <!-- Kraj kolone status -->
+   
+   
+    <td style="text-align: left;" title="Promjeni">
+    <a href="/narudzba/promjena?sifraKos=<?php echo $red->sifraKos ?>">Promjeni</a>
+    <a href="/narudzba/obrisi?sifraNar=<?php echo $red->sifra ?>">Obriši</a></td>
+    </td>
     
 </tr>
-
-<tbody class="panel" id="g_<?php echo $red->sifra?>">
-<tr >
-    <td title="Broj narudžbe">Jsfasfa</td>
-    <td style="text-align: left;" title="Cijena">Naziv</td>
-    <td style="text-align: left;" title="Stol">Kolicina</td>
-    <td style="text-align: left;" title="Status">Cijena</td>
-    <td style="text-align: left;" title="Status">Vrijeme</td>  
-</tr>
-</tbody>
+<thead>
+        <tr style="background-color: rgb(241, 203, 98);">
+            <th></th>
+            <th>Jelo</th>
+            <th>Količina</th>
+            <th>Stanje</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+<?php
+    foreach($ponuda as $redovi){
+        include 'tablicaPonuda.phtml';
+    }
+ ?>

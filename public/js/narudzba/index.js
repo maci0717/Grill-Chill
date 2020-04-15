@@ -1,15 +1,26 @@
+$('a.otvoriModalKolicina').click(function(){
 
-$(document).ready(function()
-{
-    var sifra=55;
+    var sifraKos=$(this).attr('id').split('_')[0];
+    var sifraPon=$(this).attr('id').split('_')[1];
     
+    console.log(sifraKos);
+    console.log(sifraPon);
 
-    console.log('sifra');
-    console.log(sifra);
-
-    $(".flip").click(function()
-    {
-        $(".panel").toggle();
+    $('#linkKolicina').attr('href', '/narudzba/promjeniKolicinu?sifraKos='+sifraKos+'&sifraPon='+sifraPon);
+    $('#modalKolicina').foundation('open');
+    
+    
+        return false;
+    }); 
+    
+    $('#linkKolicina').click(function(){
+        
+        var brojKolicina=$( "#kol" ).val();
+        var link=$(this).attr('href')+'&kolicina='+brojKolicina;
+    
+        $('#linkKolicina').attr('href', link);
+    
+    
     });
-});
- 
+    
+    

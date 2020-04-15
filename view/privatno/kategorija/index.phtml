@@ -1,0 +1,17 @@
+<a class="button expanded" style="background-color: orange;"href="/kategorija/novo">Dodaj novu kategoriju</a>
+<table>
+    <thead>
+        <tr>
+            <th>Sifra</th>
+            <th>Naziv</th>
+            <th>Radnja</th>           
+        </tr>
+    </thead>
+    <tbody>
+    <?php 
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>

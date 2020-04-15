@@ -60,6 +60,12 @@
             header('location: /status/index');
         }
 
+        public function sljedeceStanje()
+        {
+            Status::test();
+            header('location: /narudzba/index');
+        }
+
 
         
     }

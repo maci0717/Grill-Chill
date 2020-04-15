@@ -1,0 +1,20 @@
+<tr>
+    <td title="Sifra"><?php echo $red->sifra?></td>
+    <td style="text-align: left;" title="Stol"><?php echo $red->brojStola?></td>
+    <td style="text-align: left;" title="Stolice"><?php echo $red->brojStolica?></td>
+    <td>
+
+    <!-- Uređivanje jela -->
+    <a href="/stol/promjena?sifra=<?php echo $red->sifra ?>">
+    <i class="fas fa-pencil-alt fa-2x" style="color: orange;" title="Izmjeni"></i></a>
+       <?php 
+
+        ?>
+    <!-- Brisanje kategorije -->
+    <a onclick="return confirm('Sigurno zelis obrisati stol <?php echo $red->brojStola ?> ');" 
+    href="/stol/obrisi?sifra=<?php echo $red->sifra ?>">
+    <i class="far fa-times-circle fa-2x" style="color: orange;" title="Ukloni"></i></a>
+    
+    
+    </td>
+</tr>

@@ -12,21 +12,42 @@
         <?php 
         $ukupnaCijena=0;
         $minVrijemeCekanja=0;
-        $maxVrijemeCekanja=0;
         foreach($podaci as $red){
             include 'tablicaStavka.phtml';
         }
         ?>
     </tbody>
 </table>
-
+<div style="width: 48%; float: left; box-sizing: border-box;">
 <?php 
- $maxVrijemeCekanja = $minVrijemeCekanja+10;
-    echo 'Ukupna cijena narudžbe iznosi: ' . $ukupnaCijena . '<br>';
-    echo 'Vrijeme čekanja narudžbe: ' . $minVrijemeCekanja . ' - ' . $maxVrijemeCekanja . ' minuta<br>';
-    echo 'Na poleđini tableta Vam piše broj stola: ' . $red->stol .'<br>'; //trebam uvesti select i popis stolova iz baze
+ $vrijemeCekanja = strval($minVrijemeCekanja) . ' - ' . strval($minVrijemeCekanja+10);
+    echo '<h4>Ukupna cijena narudžbe iznosi: ' . $ukupnaCijena . '.00 kn<br>';
+    echo 'Vrijeme čekanja narudžbe: ' . $vrijemeCekanja . ' min<br>';
+    echo 'Odaberite stol:    ';
  ?>
 
-<a class="button" style="background-color: orange;" href="#">Naruči</a>
+<a id="modalNaruci" class="button"style="background-color: orange; padding:15px; width: 200px; font-size: 20px;">
+<?php echo $red->brojStola ?></a>
+
+</h4>
+ </div>
+
+<div style="width: 48%; float: left; box-sizing: border-box;">
+<a class="button expanded" style="background-color: orange; padding:35px; font-size: 30px;" 
+href="/kosara/naruci?vrijeme=<?php echo $minVrijemeCekanja ?>&cijena=<?php echo $ukupnaCijena ?>&sifraKos=<?php echo $podaci[0]->sifraKos ?>"> NARUČI</a>
+</div>
 
 
+<div class="reveal" id="modalStol" data-reveal>
+  <p>Odaberite stol</p>
+  <select id="stol">
+ <?php foreach($stol as $red){ ?>
+        <option value="<?php echo $red->sifra; ?>"><?php echo $red->brojStola; ?></option>    
+<?php } ?> 
+</select>
+  <a id="linkStol" class="button">DA</a>
+  <a id="odustani" class="button">Odustani</a>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

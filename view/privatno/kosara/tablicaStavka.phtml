@@ -5,6 +5,6 @@
         <?php $ukupnaCijena+=$red->kolicina*$red->cijena; echo $red->kolicina . 'x' . $red->cijena .' kn';?></td>
     <td style="text-align: left;" title="Vrijeme">
         <?php if($minVrijemeCekanja<$red->vrijeme) $minVrijemeCekanja=$red->vrijeme; echo $red->vrijeme?></td>
-    <td title="Makni iz košare"><a href="/kosara/obrisi?sifra=<?php echo $red->sifra ?>"><i class="fas fa-times fa-2x" style="color: orange;"></i></a></td> 
+    <td title="Ukloni"><a href="/kosara/obrisi?sifra=<?php echo $red->sifra ?>"><i class="fas fa-times fa-2x" style="color: orange;"></i></a></td> 
 </tr>
 

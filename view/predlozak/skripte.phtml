@@ -2,6 +2,8 @@
 <script src="<?php echo APP::config('url'); ?>public/js/vendor/what-input.js"></script>
 <script src="<?php echo APP::config('url'); ?>public/js/vendor/foundation.js"></script>
 <script src="<?php echo APP::config('url'); ?>public/js/app.js"></script>
-<script src="<?php echo APP::config('url'); ?>public/js/ponuda/index.js"></script>
-<script src="<?php echo APP::config('url'); ?>public/js/narudzba/index.js"></script>
+<script src="<?php echo APP::config('url'); ?>public/js/kosara/index.js"></script> 
+<script src="<?php echo APP::config('url'); ?>public/js/narudzba/index.js"></script> <!-- Ovo moram prebaciti na $javascript-->
+<?php if(isset($jsLib)){echo $jsLib . PHP_EOL;} ?>
+<?php if(isset($javascript)){echo $javascript . PHP_EOL;} ?>
 <script src="https://kit.fontawesome.com/3b8c308efb.js" crossorigin="anonymous"></script>

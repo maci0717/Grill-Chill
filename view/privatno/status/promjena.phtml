@@ -1,0 +1,21 @@
+<form class="log-in-form" method="POST"
+action="/status/promjeni?sifra=<?php echo $_GET['sifra']; ?>">
+ 
+  
+  <label>Stanje
+    <input type="text" id="stanje" name="stanje" value="<?php 
+    echo $status->stanje;
+    ?>">
+  </label>
+
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/status/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Promjeni podatke"></input>
+    </div>
+  </div>
+</form>
+<?php echo $poruka; ?>

@@ -1,0 +1,18 @@
+<tr>
+    <td title="Sifra"><?php echo $red->sifra?></td>
+    <td style="text-align: left;" title="Stanje"><?php echo $red->stanje?></td>
+    
+    <td>
+
+    <!-- Uređivanje jela -->
+    <a href="/status/promjena?sifra=<?php echo $red->sifra ?>">
+    <i class="fas fa-pencil-alt fa-2x" style="color: orange;" title="Izmjeni"></i></a>
+        
+    <!-- Brisanje kategorije -->
+    <a onclick="return confirm('Sigurno zelis obrisati stanje <?php echo $red->stanje ?> ');" 
+    href="/status/obrisi?sifra=<?php echo $red->sifra ?>">
+    <i class="far fa-times-circle fa-2x" style="color: orange;" title="Ukloni"></i></a>
+    
+    
+    </td>
+</tr>

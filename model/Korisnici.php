@@ -6,7 +6,7 @@ class Korisnici
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select sifra, 
-        ime, prezime, status, email, aktivan from korisnik where sifra>1');
+        ime, prezime, status, email, aktivan, bodovi from korisnik where sifra>1');
         $izraz->execute();
         return $izraz->fetchAll();
     }
@@ -15,7 +15,7 @@ class Korisnici
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select sifra, 
-        ime, prezime, status, email from korisnik
+        ime, prezime, status, email, bodovi from korisnik
         where sifra=:sifra');
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
@@ -99,6 +99,15 @@ class Korisnici
         prezime=:prezime,status=:status, aktivan=:aktivan where sifra=:sifra');
         $izraz->execute($_POST);
     }
+
+    public static function updateProfil()
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('update korisnik set email=:email,ime=:ime,
+        prezime=:prezime where sifra=:sifra');
+        $izraz->execute($_POST);
+    }
+
 
     
 

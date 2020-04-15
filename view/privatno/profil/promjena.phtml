@@ -1,0 +1,34 @@
+<form class="log-in-form" method="POST"
+action="/profil/promjeniProfil">
+ <label>Email
+    <input type="email" id="email" name="email" value="<?php 
+    echo $korisnik->email;
+    ?>">
+  </label>
+  
+  <label>Ime
+    <input type="text" id="ime" name="ime" value="<?php 
+    echo $korisnik->ime;
+    ?>">
+  </label>
+
+  <label>Prezime
+    <input type="text" id="prezime" name="prezime" value="<?php 
+    echo $korisnik->prezime;
+    ?>">
+  </label>
+
+
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/profil/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Promjeni podatke"></input>
+    </div>
+  </div>
+  <input type="hidden" name="sifra" 
+  value="<?php echo $korisnik->sifra ?>">
+</form>
+<?php echo $poruka; ?>

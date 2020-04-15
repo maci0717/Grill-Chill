@@ -38,7 +38,10 @@
             'sifraKos' => $sifraKos
             ]);
 
+            
         $veza->commit();
+        session_regenerate_id();
+        Kosara::kreirajKosaru();
     }
 
     public static function kreirajKosaru()
@@ -98,7 +101,7 @@
         $veza = DB::getInstanca();
         $sessionID=session_id();
         $izraz=$veza->prepare('
-        update kosara set stol=:stol where sessonID=:sessionID
+        update kosara set stol=:stol where sessionID=:sessionID
         
         ');
         $izraz->execute([

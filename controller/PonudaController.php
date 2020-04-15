@@ -21,19 +21,29 @@ class PonudaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
             'uvjet' => $_GET['uvjet'],
+            'javascript'=>'<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>'
            ]);
     }
 
-    
+
+
     public function index()
     {
         $_GET['uvjet']='Juha';
-        $podaci = Ponuda::trazi($_GET['uvjet']);
+        $this->renderIndex(Ponuda::trazi($_GET['uvjet']), $_GET['uvjet'] );
+     echo 'TU SAM';
+    }
+
+    private function renderIndex($podaci, $uvjet)
+    {
+        echo 'Tu sam';
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
-            'uvjet' => $_GET['uvjet'],
-     ]);
+            'uvjet'=>$uvjet,
+            'javascript'=>'<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>'
+           ]);
     }
+
 
     public function novo()
     {
@@ -53,6 +63,7 @@ class PonudaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
             'uvjet' => $_GET['uvjet'],
+            'javascript'=>'<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>',
            ]);
     } 
 

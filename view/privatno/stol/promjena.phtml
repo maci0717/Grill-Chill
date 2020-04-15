@@ -1,0 +1,26 @@
+<form class="log-in-form" method="POST"
+action="/stol/promjeni?sifra=<?php echo $_GET['sifra']; ?>">
+ 
+  
+  <label>Stol
+    <input type="text" id="brojStola" name="brojStola" value="<?php 
+    echo $stol->brojStola;
+    ?>">
+  </label>
+
+  <label>Stolice
+    <input type="number" id="brojStolica" name="brojStolica" value="<?php 
+    echo $stol->brojStolica;
+    ?>">
+  </label>
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/stol/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Promjeni podatke"></input>
+    </div>
+  </div>
+</form>
+<?php echo $poruka; ?>

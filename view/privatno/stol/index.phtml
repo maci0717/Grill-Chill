@@ -1,0 +1,18 @@
+<a class="button expanded" style="background-color: orange;"href="/stol/novo">Dodaj novi stol</a>
+<table>
+    <thead>
+        <tr>
+            <th>Sifra</th>
+            <th>Stol</th>
+            <th>Broj stolica</th>   
+            <th>Promjeni / Obriši</th>          
+        </tr>
+    </thead>
+    <tbody>
+    <?php 
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>
