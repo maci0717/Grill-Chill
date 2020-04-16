@@ -49,7 +49,7 @@
         
         public function promjeniProfil()
         {
-            // I OVDJE DOĐU SILNE KONTROLE
+           
             Korisnici::updateProfil();
             header('location: /profil/index');
         }

@@ -44,14 +44,13 @@ action="/korisnici/promjeni">
     }
     ?>value="kuhar">Kuhar</option>
   </select>
-  
+  <?php if($_SESSION['korisnik']->aktivan==false){ echo ' selected="selected" ';  } ?>
  
   <label for="aktivan">Aktivan</label>
   <select name="aktivan" id="aktivan">
-    <option value="0">Ne</option>
-    <option value="1">Da</option>
+    <option value="0"  <?php if($korisnik->aktivan==false){ echo ' selected="selected" ';  } ?>>Ne</option>
+    <option value="1"  <?php if($korisnik->aktivan==true){ echo ' selected="selected" ';  } ?>>Da</option>
 </select>
-
 
   <div class="grid-x grid-margin-x">
     <div class="large-6 cell">

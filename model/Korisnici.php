@@ -5,8 +5,10 @@ class Korisnici
     public static function readAll()
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select sifra, 
-        ime, prezime, status, email, aktivan, bodovi from korisnik where sifra>1');
+        $izraz = $veza->prepare('
+        select sifra, concat(ime, \' \' ,prezime) as imeprezime,
+        ime, prezime, status, email, aktivan, bodovi 
+        from korisnik where sifra>1');
         $izraz->execute();
         return $izraz->fetchAll();
     }
@@ -15,7 +17,7 @@ class Korisnici
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select sifra, 
-        ime, prezime, status, email, bodovi from korisnik
+        ime, prezime, status, email, bodovi, aktivan from korisnik
         where sifra=:sifra');
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
@@ -55,7 +57,7 @@ class Korisnici
     {
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('insert into korisnik 
-        (email,lozinka,ime,prezime,status,aktivan,sessionid) values 
+        (email,lozinka,ime,prezime,status,aktivan,sessionsifra) values 
         (:email,:lozinka,:ime,:prezime,:status,false,:sessionid)');
         unset($_POST['lozinkaponovo']);
 
@@ -66,20 +68,10 @@ class Korisnici
         //print_r($_POST);
 
         $izraz->execute($_POST);
-        $headers = "From: Edunova APP <ereb@polaznik34.edunova.hr>\r\n";
-        $headers .= "Reply-To: Edunova APP <ereb@polaznik34.edunova.hr>\r\n";
-                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-                mail($_POST['email'],'Završi registraciju za Grill & Chill','<a href="' . App::config('url') . 
-                'index/zavrsiregistraciju?id=' . $_POST['sessionid'] . '">Završi</a>', $headers);
+        
                
     }
 
-    public static function zavrsiregistraciju($id){
-        $veza = DB::getInstanca();
-        $izraz=$veza->prepare('update korisnik 
-        set aktivan=true where sessionid=:sessionid');
-        $izraz->execute(['sessionid'=>$id]);
-    }
 
     public static function delete()
     {

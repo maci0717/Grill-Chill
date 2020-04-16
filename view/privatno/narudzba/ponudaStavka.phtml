@@ -4,18 +4,16 @@
     <td style="text-align: left;" title="Kolicina">
 
  
-<a id="<?php echo $ponuda->kosara_sifra . '_' . $ponuda->ponuda_sifra ?>" class="button otvoriModalKolicina"style="background-color: orange; padding:15px; width: 200px; font-size: 20px;">
+<a id="<?php echo $ponuda->kosara_sifra . '_' . $ponuda->ponuda_sifra ?>" 
+class="button otvoriModalKolicina"style="background-color: orange; padding:15px; width: 200px; font-size: 20px;">
 <?php echo $ponuda->kolicina ?></a>
 
 
     </td>
 
     <td title="Ukloni">
-    <a href="#">
-    <i class="fas fa-trash fa-2x" style="color: orange;"></i></a>
-    <!-- Brisanje -->
     <a href="/narudzba/obrisiPonudu?sifra=<?php echo $ponuda->ponuda_sifra ?>&sifraKos=<?php echo $narudzba->sifraKos?>">
-    <i class="fas fa-times fa-2x" style="color: orange;"></i></a></td> 
+    <i class="fas fa-trash fa-2x" style="color: orange;"></i></a></td> 
 </tr>
 
 

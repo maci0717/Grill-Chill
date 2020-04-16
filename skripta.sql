@@ -12,7 +12,7 @@ email           varchar(50) not null,
 lozinka         char(60) not null,
 status		    varchar(20) not null,
 bodovi			int not null default 0,
-aktivan         boolean not null default false,
+aktivan         boolean not null default true,
 sessionsifra       varchar(100)
 );
 
@@ -199,13 +199,11 @@ select cijena from ponuda;
 delete from narudzba where sifra=1;
 #Zadataci
 #1
-#NAPRAVITI AJAX
-#staviti pristupne podatke za admin/kuhar/konobar
+#NAPRAVITI AJAX za pretragu korisnika
 #staviti na web
-#maknuti email verifikacju
+
 
 #2 
-#napraviti da se cijena updejta pri brisanju ponude
 #mogucnost dodavanje pondue u kosaru iz narudzbe
 
 #3
@@ -220,8 +218,12 @@ delete from narudzba where sifra=1;
 #POGLEDATI OD PERIŠINA OGLAS ZA INCHOO
 
 #Pitanja za prof
+#UTF-8 napravti
 #Ideju za sta da napravim da kuhari vide svoje, konobari svoje a admin sve
 #kad napunim kosaru sa vise ponuda, kako produžiti grid
+#kako napraviti da pri mjenjanju statusa narudzbe ostane na istoj poziciji, da se ne scrolla na pocetak stranice gore
+
+
 
 #DOKUMENTACIJA
 #pripazio bi na nazivanje varijabli da se drugi lakse snalaze
