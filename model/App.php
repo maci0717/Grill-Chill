@@ -4,7 +4,7 @@ class App
 {
     public static function start()
     {
-       //error_reporting(E_ERROR | E_PARSE);
+       error_reporting(E_ERROR | E_PARSE);
        $ruta = Request::getRuta();
         // echo $ruta;   
 
