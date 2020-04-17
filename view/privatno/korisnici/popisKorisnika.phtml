@@ -1,0 +1,32 @@
+<div style="width: 100%; overflow: auto; max-height: 380px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Korisnik</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($podaci as $red):?>  
+                    <tr>
+                        <td><?php echo $red->imeprezime ?></td>
+                        <td><?php echo $red->email ?></td>
+                        <td><?php echo $red->status ?></td>
+                        <td>
+                        
+                        <!-- Uređivanje korisnika -->
+                        <a href="/korisnici/promjena?sifra=<?php echo $red->sifra ?>">
+                        <i class="fas fa-user-edit fa-2x" style="color: orange;" title="Uredi"></i></a>
+                    
+                        <!-- Brisanje korisnika -->
+                        <a onclick="return confirm('Sigurno zelis obrisati <?php echo $red->ime . ' ' . $red->prezime ?> ');" 
+                        href="/korisnici/obrisi?sifra=<?php echo $red->sifra ?>">
+                        <i class="fas fa-user-times fa-2x" style="color: orange;" title="Ukloni"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+        </div>

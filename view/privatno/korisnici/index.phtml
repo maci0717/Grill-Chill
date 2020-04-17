@@ -1,73 +1,20 @@
 <?php 
     if($_SESSION['korisnik']->status==='admin')
     { ?>
-    <a class="button expanded" style="background-color: orange;"href="/korisnici/novi">Dodaj korisnika</a>
+    <a class="button expanded" style="background-color: orange;" href="/korisnici/novi">Dodaj korisnika</a>
     <?php
     }?>
 
+    <a href="/korisnici/popis" class="button" style="background-color: orange;">Cijeli popis korisnika</a>
+
 <div class="large-6 cell">
-    <label for="uvjet">Traži korisnika</label>
+    <label for="uvjet">Prikaži korisnika</label>
     <input type="text" id="uvjet" />
-    <div style="width: 100%; overflow: auto; max-height: 380px;">
-        <table>
-            <thead>
-                <tr>
-                    <th>Korisnik</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Akcija</th>
-                </tr>
-            </thead>
-            <tbody id="polaznici">
-                <?php foreach($podaci as $red):?>  
-                    <tr>
-                        <td><?php echo $red->imeprezime ?></td>
-                        <td><?php echo $red->email ?></td>
-                        <td><?php echo $red->status ?></td>
-                        <td>
-                        <!--  Kopirano iz predavac01, mozda ovaj id treba za rad s ajaxom, ako ne, obrisati 
-                        <i id="p_<?php //echo $red->sifra?>" 
-                        title="Obriši" class="fas fa-trash fa-2x" 
-                        style="color: red; cursor: pointer;"></i>
-                            -->
-
-                        <!-- Uređivanje korisnika -->
-                        <a href="/korisnici/promjena?sifra=<?php echo $red->sifra ?>">
-                        <i class="fas fa-user-edit fa-2x" style="color: orange;" title="Uredi"></i></a>
-                    
-                        <!-- Brisanje korisnika -->
-                        <a onclick="return confirm('Sigurno zelis obrisati <?php echo $red->ime . ' ' . $red->prezime ?> ');" 
-                        href="/korisnici/obrisi?sifra=<?php echo $red->sifra ?>">
-                        <i class="fas fa-user-times fa-2x" style="color: orange;" title="Ukloni"></i></a>
-                        </td>
-                    </tr>
-                <?php endforeach;?>
-            </tbody>
-        </table>
-        </div>
-    </div>
-<!--Mislim da se moze brisati
-<table>
-    <thead>
-        <tr>
-            <th>Ime</th>
-            <th>Prezime</th>
-            <th>E-mail</th>
-            <th>Status</th>
-            <th>Aktivan</th>
-            <th>Akcija</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php 
-        //foreach($podaci as $red){
-            //include 'tablicaStavka.phtml';
-        //}
-        ?>
-    </tbody>
-</table>
+    <div style="width: 100%; overflow: auto; max-height: 380px;"></div>
+</div>
 
 
--->
+<div id="AjaxTest"></div>
+
 
 

@@ -2,6 +2,8 @@
 
 class Korisnici
 {
+   
+
     public static function readAll()
     {
         $veza = DB::getInstanca();
@@ -99,6 +101,25 @@ class Korisnici
         prezime=:prezime where sifra=:sifra');
         $izraz->execute($_POST);
     }
+
+
+    public static function traziKorisnike()
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+            select sifra, ime, prezime, email, status 
+            from korisnik 
+            where concat(ime,\' \',prezime) like :uvjet
+            
+            order by prezime, ime
+        ');
+
+        $izraz->execute([
+            'uvjet'=>'%' . $_GET['uvjet'] . '%',
+            ]);
+        return $izraz->fetchAll();
+    } 
+
 
 
     

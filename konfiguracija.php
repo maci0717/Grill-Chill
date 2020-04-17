@@ -15,7 +15,7 @@ return [
         'server' => 'localhost',
         'baza' => 'ereb_restoran',
         'korisnik' => 'ereb_ereb',
-        'lozinka' => 'ZeA=b-D(BHFj'
+        'lozinka' => 'J-3I59KW-{r*'
     ]*/
     
 ];

@@ -1,46 +1,59 @@
 $('#uvjet').autocomplete({
     source: function(request, response){
         $.ajax({
-            url: '/polaznik/trazipolaznik',
+            url: '/korisnici/trazikorisnik',
             data:{
                 uvjet: request.term,
-                grupa: grupa
             },
             success: function(odgovor){
                 response(odgovor);
             }
-        });
+        }); 
 
     },
     minLength: 2,
     select: function(event, ui){
-        spremi(ui.item);
+        prikazi(ui.item);
     }
 }).autocomplete('instance')._renderItem=function(ul, item){
     return $('<li>').append(
-        '<div><img src="https://picsum.photos/20/20" /> ' + 
+        '<div>' + 
         item.ime + ' ' + item.prezime + 
         ' ' + item.email + '</div>').appendTo(ul);
 };
-
-function spremi(polaznik){
+ 
+function prikazi(korisnik){
     $.ajax({
         type: 'POST',
-        url:'/grupa/dodajpolaznik',
-        data:{grupa: grupa, polaznik: polaznik.sifra},
+        url:'/korisnici/dodajkorisnik',
+        data:{korisnikSifra: korisnik.sifra},
         success: function(data){
            if(data==='OK'){
-            $('#polaznici').append(
-                '<tr>' + 
-                '<td>' + polaznik.ime + ' ' + polaznik.prezime + '</td>' + 
-                '<td>' + polaznik.oib + '</td>' + 
-                '<td><i id="p_' + polaznik.sifra + '"' + 
-                'title="Obriši" class="fas fa-trash fa-2x" ' + 
-                'style="color: red; cursor: pointer;"></i>' + 
-                '</td>' + 
-                '</tr>' 
+            $('#AjaxTest').append(
+
+
+               '<?php if(file_exists(BP' + 'public' + 'DIRECTORY_SEPARATOR'+
+                'images' + 'DIRECTORY_SEPARATOR'+ 
+                'korisnici' + 'DIRECTORY_SEPARATOR'+
+                 korisnik.sifra + '.png)): ?>'+
+
+        '<img class="slika"  id="p_' + korisnik.sifra + '" style="max-width: 200px"' + 
+        'src="http://maciserver01.hr/public/images/korisnici/' + korisnik.sifra + '.png" ' +
+        'alt="' + korisnik.ime + ' ' + korisnik.prezime +'" /> <?php else:?>' + 
+
+        '<img class="slika"  id="p_' + korisnik.sifra + '" style="max-width: 200px"' + 
+        'src="http://maciserver01.hr/public/images/nepoznato.jpg"' +
+        'alt="Za polaznika nije postavljena slika" /> <?php endif;?> ' +
+          
+
+        '<h2>' + korisnik.ime +
+        '<br /> ' + korisnik.prezime + '</h2>' +
+       'Grill bodovi: 0<br />' +
+        korisnik.email +'<br />'+
+        '<a href="/profil/promjena?sifra='+ korisnik.sifra + '">'+
+       ' <i title="Promjeni" class="fas fa-edit fa-2x"></i></a><br />' 
+
             );
-            definirajBrisanje();
            }else{
                alert(data);
            }
@@ -48,24 +61,3 @@ function spremi(polaznik){
     });
 }
 
-function definirajBrisanje(){
-    $('.fas.fa-trash.fa-2x').click(function(){
-        var element=$(this);
-        var id=element.attr('id').split('_')[1];
-        
-        $.ajax({
-            type: 'POST',
-            url:'/grupa/obrisipolaznik',
-            data:{grupa: grupa, polaznik: id},
-            success: function(data){
-               if(data==='OK'){
-                   element.parent().parent().remove();
-               }else{
-                   alert(data);
-               }
-            }
-        });
-    });
-}
-
-definirajBrisanje();

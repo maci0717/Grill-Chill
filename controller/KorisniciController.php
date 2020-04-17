@@ -6,10 +6,20 @@ class KorisniciController extends AutorizacijaController
     DIRECTORY_SEPARATOR . 'korisnici' .
     DIRECTORY_SEPARATOR;
 
+
+    public function trazikorisnik(){
+        header('Content-Type: application/json');
+        echo json_encode(Korisnici::traziKorisnike());
+    }
+
+ 
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-         'podaci'=>Korisnici::readAll()
+            'podaci'=>Korisnici::readAll(),
+            'css' => '<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">',
+            'jsLib' => '<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>',
+            'javascript'=>'<script src="' . APP::config('url') .'public/js/korisnik/index.js"></script>'
      ]);
     }
 
@@ -51,11 +61,29 @@ class KorisniciController extends AutorizacijaController
      
     }
 
-    public function promjeni()
+    public function promjeni() 
     {
         // I OVDJE DOĐU SILNE KONTROLE
         Korisnici::update();
         header('location: /korisnici/index');
     }
 
+    public function dodajkorisnik(){
+
+        //Korisnici::dodajkorisnik();
+        echo 'OK';
+    }
+
+    public function popis(){
+
+        $this->view->render($this->viewDir . 'popisKorisnika',[
+            'podaci'=>Korisnici::readAll(),
+            'css' => '<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">',
+            'jsLib' => '<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>',
+            'javascript'=>'<script src="' . APP::config('url') .'public/js/korisnik/index.js"></script>'
+     ]);
+        
+       
+    }
+    
 }

@@ -1,1 +1,12 @@
-Dobrodošli, koristite gornji izbornik.
+<?php          
+      
+        if($_SESSION['korisnik']->status==='gost'){
+            echo $_SESSION['korisnik']->ime . 
+            ', dobro nam došli. <br> Vjerujemo da ste gladni, idite na MENU kako bi riješili taj problem!';
+        }else echo 'Dobrodošli, koristite gornji izbornik.';
+      
+  ?>
+
+
+
+

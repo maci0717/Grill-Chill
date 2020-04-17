@@ -17,7 +17,7 @@ sessionsifra       varchar(100)
 );
 
 
-
+select * from korisnik;
 insert into korisnik values 
 (null, 'Gostoje', 'Gostojubic' ,'gost@edunova.hr', 
 '$2y$10$U5ykDrG02jI187wbGXuIGucm8ta1kPWVhCgMdLqSzI7y54eaL/kCW','gost', 0, true, null);
@@ -213,7 +213,11 @@ delete from narudzba where sifra=1;
 
 #4
 #pri prijavi popraviti kosaru da stol bude default prikazan
-# u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze
+################################################################
+#OVO NE RADI UOPCE VISE
+# u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
+################################################################
+#Ako se u praznoj kosari stisne naruci, napravi se prazna narudba  
 #pregledati cijeli kod i obrisati nepotrebne komentare
 #POGLEDATI OD PERIŠINA OGLAS ZA INCHOO
 
@@ -229,3 +233,4 @@ delete from narudzba where sifra=1;
 #pripazio bi na nazivanje varijabli da se drugi lakse snalaze
 #nebi imao puno slicnih funckija kao sto sada imam, vec bi napravio manje alternativnih fja
 #bolji nacin za izracunavanje cijene kosare
+#za css nebi svuda stavljao style background color orange

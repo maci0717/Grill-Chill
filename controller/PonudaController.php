@@ -31,12 +31,12 @@ class PonudaController extends AutorizacijaController
     {
         $_GET['uvjet']='Juha';
         $this->renderIndex(Ponuda::trazi($_GET['uvjet']), $_GET['uvjet'] );
-     echo 'TU SAM';
+     
     }
 
     private function renderIndex($podaci, $uvjet)
     {
-        echo 'Tu sam';
+       
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
             'uvjet'=>$uvjet,
