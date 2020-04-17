@@ -2,7 +2,7 @@
 
 return [
     'nazivAPP' => 'Grill & Chill',
-    'url' => 'http://maciserver01.hr/',
+    'url' => 'http://polaznik34.edunova.hr/',
     'dev' => true,
     /*
     'db' =>[
