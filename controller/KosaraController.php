@@ -10,7 +10,7 @@
         public function index()
         {
             $this->view->render($this->viewDir . 'index',[
-                'podaci'=>Kosara::readAll()
+                'podaci'=>Kosara::readAll(),
          ]);
         }
         
@@ -27,7 +27,7 @@
         
         
         public function unosStola()
-        {
+        { 
 
             Kosara::stol();
 

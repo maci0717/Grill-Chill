@@ -21,7 +21,7 @@
                             <li><a href="/stol/index">Stolovi</a></li>
                         </ul>
                     </li>
-                <?php else:?>
+                <?php elseif($_SESSION['korisnik']->ime!='Gostoje'):?>
                     <li><a href="/profil/index">Profil</a></li>
                 <?php endif;?>
                 

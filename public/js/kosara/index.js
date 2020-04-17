@@ -5,7 +5,7 @@ $('#modalNaruci').click(function(){
 $('#linkStol').attr('href', '/kosara/unosStola');
 $('#modalStol').foundation('open');
 
-
+ 
     return false;
 }); 
 

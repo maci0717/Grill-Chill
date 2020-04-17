@@ -73,7 +73,7 @@
         $sessionID=session_id();
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        select a.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, d.brojStola, c.sifra as sifraKos
+        select a.sifra, a.naziv, b.kolicina, a.cijena, a.vrijeme, c.stol, d.brojStola, c.sifra as sifraKos
         from ponuda a 
         left join kosara_ponuda b  on a.sifra=b.ponuda_sifra
         left join kosara c on b.kosara_sifra=c.sifra
@@ -106,7 +106,7 @@
         ');
         $izraz->execute([
             'stol'=>$_GET['stol'],
-            'sessionID'=>$sessionID
+            'sessionID'=>$sessionID 
             ]);
 
     }

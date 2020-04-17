@@ -15,7 +15,10 @@
         foreach($podaci as $red){
             include 'tablicaStavka.phtml';
         }
+        
         ?>
+
+      
     </tbody>
 </table>
 <div style="width: 48%; float: left; box-sizing: border-box;">
@@ -25,16 +28,22 @@
     echo 'Vrijeme čekanja narudžbe: ' . $vrijemeCekanja . ' min<br>';
     echo 'Odaberite stol:    ';
  ?>
+<?php 
 
+ ?>
 <a id="modalNaruci" class="button"style="background-color: orange; padding:15px; width: 200px; font-size: 20px;">
-<?php echo $red->brojStola ?></a>
+<?php if(isset($red->stol) && $red->stol!=1) {echo $red->brojStola;} else {echo 'Odaberite Stol';} ?></a> 
 
 </h4>
  </div>
 
+
 <div style="width: 48%; float: left; box-sizing: border-box;">
 <a class="button expanded" style="background-color: orange; padding:35px; font-size: 30px;" 
-href="/kosara/naruci?vrijeme=<?php echo $minVrijemeCekanja ?>&cijena=<?php echo $ukupnaCijena ?>&sifraKos=<?php echo $podaci[0]->sifraKos ?>"> NARUČI</a>
+<?php if($minVrijemeCekanja!=0 && $red->stol!=1): ?>
+href="/kosara/naruci?vrijeme=<?php echo $minVrijemeCekanja ?>&cijena=<?php echo $ukupnaCijena ?>&
+sifraKos=<?php echo $podaci[0]->sifraKos ?>"
+<?php else: ?> onclick="return alert('Ne možete naručiti jer ili niste odabrali stol, ili vam je košara prazna!')" <?php endif; ?>> NARUČI</a>
 </div>
 
 

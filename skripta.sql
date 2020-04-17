@@ -39,7 +39,7 @@ insert into korisnik (ime, prezime, status, email, lozinka, aktivan) values
 ('Dario', 'Romic', 'konobar', 'dario.romic@edunova.hr','$2y$10$U5ykDrG02jI187wbGXuIGucm8ta1kPWVhCgMdLqSzI7y54eaL/kCW', 1),
 ('Igor', 'Ivankov', 'konobar', 'igor.ivankov@edunova.hr','$2y$10$U5ykDrG02jI187wbGXuIGucm8ta1kPWVhCgMdLqSzI7y54eaL/kCW', 1),
 ('Robert', 'Maric', 'gost', 'robert.maric@edunova.hr','$2y$10$U5ykDrG02jI187wbGXuIGucm8ta1kPWVhCgMdLqSzI7y54eaL/kCW', 1),
-('David', 'stetic', 'gost', 'davsifra.stetic@edunova.hr', '$2y$10$U5ykDrG02jI187wbGXuIGucm8ta1kPWVhCgMdLqSzI7y54eaL/kCW', 1);
+('David', 'Stetic', 'gost', 'david.stetic@edunova.hr', '$2y$10$U5ykDrG02jI187wbGXuIGucm8ta1kPWVhCgMdLqSzI7y54eaL/kCW', 1);
 
 
 insert into korisnik (ime, prezime, status, lozinka, email) values
@@ -190,41 +190,32 @@ update ponuda set cijena= 7+round(5*rand()) where kategorija=8;
 
 
 select * from narudzba;
-select * from stol;
 select * from kosara;
-select * from korisnik;
 select * from kosara_ponuda;
+
 select cijena from ponuda;
 
-delete from narudzba where sifra=1;
-#Zadataci
-#1
-#NAPRAVITI AJAX za pretragu korisnika
-#staviti na web
 
-
-#2 
-#mogucnost dodavanje pondue u kosaru iz narudzbe
-
-#3
-#Urediti profil
-#napraviti sistem za GRILL bodove
-#u ponuda->promjena.phtml za sliku treba promjeniti type i u novo.phtml takodjer
-
-#4
+#Popis popravaka
 #pri prijavi popraviti kosaru da stol bude default prikazan
 ################################################################
 #OVO NE RADI UOPCE VISE
 # u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
+#za konobara radi
 ################################################################
-#Ako se u praznoj kosari stisne naruci, napravi se prazna narudba  
-#pregledati cijeli kod i obrisati nepotrebne komentare
-#POGLEDATI OD PERIŠINA OGLAS ZA INCHOO
+
+#maknuti cijenu i sifru kosare na mjenjanju ponde u narudzbi /sve maknuti i ostaviti smao ponuddu, a za mjenjane stoal napraviti na prethodnoj stranici
+#popraviti algoritam za mjenjanje ukupne cijene pri promjeni količine ponude u narudzbi
+#ako u narudbzi ima 2 puta po isto jelo ne valja mjenjanje kolicine pa tako i cijene
+#iskljuciti notice
+
+
+#AKO STIGNEM
+#mogucnost dodavanja novog jela u ponudu naručenog
+
 
 #Pitanja za prof
 #UTF-8 napravti
-#Ideju za sta da napravim da kuhari vide svoje, konobari svoje a admin sve
-#kad napunim kosaru sa vise ponuda, kako produžiti grid
 #kako napraviti da pri mjenjanju statusa narudzbe ostane na istoj poziciji, da se ne scrolla na pocetak stranice gore
 
 

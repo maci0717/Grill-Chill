@@ -18,7 +18,9 @@
 
         <h2><?php echo $podaci->ime ?>
         <br /> <?php echo $podaci->prezime ?></h2>
+        <?php if($podaci->status=='gost'):  ?>
         <?php echo 'Grill bodovi: ' . $podaci->bodovi ?> <br />
+        <?php endif; ?>
         <?php echo $podaci->email ?><br />
         <?php echo $podaci->status ?>
         <hr />
