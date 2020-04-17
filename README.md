@@ -10,7 +10,7 @@ ili zaobialzi prijavu i odmah narucuje. Ponudu stavlja u košaru i pritiskom na 
 #pri prijavi popraviti kosaru da stol bude default prikazan
 ################################################################
 #OVO NE RADI UOPCE VISE
-# u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
+#u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
 #za konobara radi
 ################################################################
 #Ako se u praznoj kosari stisne naruci, napravi se prazna narudba  
