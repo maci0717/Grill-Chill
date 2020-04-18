@@ -48,7 +48,7 @@
     </div>
     <div class="top-bar-right">
         <ul class="menu">
-        <?php if(isset($_SESSION['korisnik']) && $_SESSION['korisnik']->status==='gost'):?>
+        <?php if(isset($_SESSION['korisnik']) && $_SESSION['korisnik']->status==='gost' && $_SESSION['korisnik']->ime!='Gostoje'):?>
             <li><a href="#">Grill bodovi: 0</a></li>
             <?php endif;?>
             <li>

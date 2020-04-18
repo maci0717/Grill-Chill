@@ -4,8 +4,8 @@ class App
 {
     public static function start()
     {
-       error_reporting(E_ERROR | E_PARSE);
-       $ruta = Request::getRuta();
+        error_reporting(E_ERROR | E_PARSE);
+        $ruta = Request::getRuta();
         // echo $ruta;   
 
         $djelovi = explode('/',$ruta); 

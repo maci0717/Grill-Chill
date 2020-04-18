@@ -16,11 +16,13 @@
             include 'tablicaStavka.phtml';
         }
         
-        ?>
-
-      
+        ?>      
     </tbody>
 </table>
+<?php if(isset($poruka)): ?>
+<hr><br><h2><?php echo $poruka; ?></h2><br><hr>
+<?php endif; ?>
+
 <div style="width: 48%; float: left; box-sizing: border-box;">
 <?php 
  $vrijemeCekanja = strval($minVrijemeCekanja) . ' - ' . strval($minVrijemeCekanja+10);

@@ -110,19 +110,16 @@ class Korisnici
             select sifra, ime, prezime, email, status 
             from korisnik 
             where concat(ime,\' \',prezime) like :uvjet
-            
             order by prezime, ime
         ');
 
         $izraz->execute([
             'uvjet'=>'%' . $_GET['uvjet'] . '%',
             ]);
+
         return $izraz->fetchAll();
     } 
 
-
-
-    
 
 
 }

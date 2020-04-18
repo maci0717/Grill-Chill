@@ -6,25 +6,25 @@
     <td style="text-align: left;" title="Cijena"><?php echo $red->cijena?></td>
   
     <!-- Početak kolone status -->
-    <td style="text-align: left;" title="Status">
+    <td style="text-align: left;" >
     <?php  if($_SESSION['korisnik']->status=='kuhar'|| $_SESSION['korisnik']->status=='admin'):?>
-    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=1">
+    <a title="Zaprimljeno" href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=1">
     <i class="fas fa-list-ul fa-2x" 
         <?php if($red->stanje=='Zaprimljeno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
     <?php endif;  ?>
-    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=2">
+    <a title="Spremno" href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=2">
     <i class="fas fa-history fa-2x"
         <?php if($red->stanje=='Spremno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
     <?php if($_SESSION['korisnik']->status=='konobar' || $_SESSION['korisnik']->status=='admin'):    ?>
-    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=3">
+    <a title="Posluženo" href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=3">
     <i class="fas fa-utensils fa-2x"
         <?php if($red->stanje=='Posluzeno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
     
-    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=4">
+    <a title="Naplačeno" href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=4">
     <i class="fas fa-wallet fa-2x"
         <?php if($red->stanje=='Naplaceno'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
     <?php  endif; if( $_SESSION['korisnik']->status=='admin'):  ?>
-    <a href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=5">
+    <a title="Gotovo" href="/status/sljedeceStanje?sifraNar=<?php echo $red->sifra?>&status=5">
     <i class="fas fa-check-circle fa-2x"
         <?php if($red->stanje=='Gotovo'){ ?> style="color: green;" <?php } else ?> style="color: gray;"></i></a>
     <?php endif;  ?>

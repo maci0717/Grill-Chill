@@ -63,16 +63,25 @@ class KorisniciController extends AutorizacijaController
 
     public function promjeni() 
     {
-        // I OVDJE DOĐU SILNE KONTROLE
         Korisnici::update();
         header('location: /korisnici/index');
     }
 
-    public function dodajkorisnik(){
+    public function prikaziKorisnika(){
+                
+        if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 
+        'korisnici' . DIRECTORY_SEPARATOR . $_POST['korisnikSifra'] . '.png'))
+        {
+            $slika = 'Ima sliku';
+        }else{
+            $slika = 'Nema sliku';
+        }
+        
+        echo $slika;
 
-        //Korisnici::dodajkorisnik();
-        echo 'OK';
     }
+
+ 
 
     public function popis(){
 

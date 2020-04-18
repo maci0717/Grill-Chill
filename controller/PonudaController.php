@@ -29,8 +29,8 @@ class PonudaController extends AutorizacijaController
 
     public function index()
     {
-        $_GET['uvjet']='Juha';
-        $this->renderIndex(Ponuda::trazi($_GET['uvjet']), $_GET['uvjet'] );
+        $uvjet='Juha'; 
+        $this->renderIndex(Ponuda::trazi($uvjet), $uvjet );
      
     }
 

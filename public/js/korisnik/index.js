@@ -25,25 +25,22 @@ $('#uvjet').autocomplete({
 function prikazi(korisnik){
     $.ajax({
         type: 'POST',
-        url:'/korisnici/dodajkorisnik',
-        data:{korisnikSifra: korisnik.sifra},
+        url:'/korisnici/prikaziKorisnika',
+        data:{
+            korisnikSifra: korisnik.sifra,
+        },
         success: function(data){
-           if(data==='OK'){ 
-            $('#AjaxTest').append(
+           if(data==='Ima sliku'){ 
+            $('#korisniciAJAX').append(
 
 
-               '<?php if(file_exists(BP' + 'public' + 'DIRECTORY_SEPARATOR'+
-                'images' + 'DIRECTORY_SEPARATOR'+ 
-                'korisnici' + 'DIRECTORY_SEPARATOR'+
-                 korisnik.sifra + '.png)): ?>'+
+               
 
                 '<img class="slika"  id="p_' + korisnik.sifra + '" style="max-width: 200px"' + 
                 'src="http://maciserver01.hr/public/images/korisnici/' + korisnik.sifra + '.png" ' +
                 'alt="' + korisnik.ime + ' ' + korisnik.prezime +'" /> <?php else:?>' + 
 
-                '<img class="slika"  id="p_' + korisnik.sifra + '" style="max-width: 200px"' + 
-                'src="http://maciserver01.hr/public/images/nepoznato.jpg"' +
-                'alt="Za polaznika nije postavljena slika" /> <?php endif;?> ' +
+                 
                 
 
                 '<h2>' + korisnik.ime +
@@ -54,8 +51,24 @@ function prikazi(korisnik){
                 ' <i title="Promjeni" class="fas fa-edit fa-2x"></i></a><br />' 
 
             );
-           }else{
-               alert(data);
+           }else{ 
+                if(data=='Nema sliku'){
+                    $('#korisniciAJAX').append(
+
+                        '<img class="slika"  id="p_' + korisnik.sifra + '" style="max-width: 200px"' + 
+                        'src="http://maciserver01.hr/public/images/nepoznato.jpg"' +
+                        'alt="Za polaznika nije postavljena slika" /> <?php endif;?> ' +
+
+                        '<h2>' + korisnik.ime +
+                        '<br /> ' + korisnik.prezime + '</h2>' +
+                        'Grill bodovi: 0<br />' +
+                        korisnik.email +'<br />'+
+                        '<a href="/profil/promjena?sifra='+ korisnik.sifra + '">'+
+                        ' <i title="Promjeni" class="fas fa-edit fa-2x"></i></a><br />'
+                    );
+                }else{
+                    alert(data);
+                }
            }
         }
     });

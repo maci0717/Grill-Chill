@@ -82,8 +82,6 @@ class IndexController extends Controller
 
     public function index()
     {
-        
-
         $this->view->render('pocetna',[
             'popis'=>[],
             ]
@@ -109,12 +107,12 @@ class IndexController extends Controller
 
 
     public function gostoje()
-    {
+    { 
         $gost=Korisnici::gostojubic(); 
         session_regenerate_id();
         Kosara::kreirajKosaru();
         $_SESSION['korisnik']=$gost;
-        $npc = new PonudaController();
+        $npc = new NadzornaplocaController();
         $npc->index();
     } 
 

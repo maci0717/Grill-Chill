@@ -2,22 +2,21 @@
 
 return [
     'nazivAPP' => 'Grill & Chill',
-    'url' => 'http://polaznik34.edunova.hr/',
+    'url' => 'http://maciserver01.hr/',
     'dev' => true,
-    /*
     'db' =>[
         'server' => 'localhost',
         'baza' => 'restoran',
         'korisnik' => 'edunova',
         'lozinka' => 'edunova'
-    ]*/
-   
+    ]
+    /*
     'db' =>[
         'server' => 'localhost',
         'baza' => 'ereb_restoran',
         'korisnik' => 'ereb_ereb',
         'lozinka' => 'J-3I59KW-{r*'
-    ]
+    ]*/
     
 ];
 

@@ -85,5 +85,11 @@ class NarudzbaController extends AutorizacijaController
             header('location: /narudzba/index');
     }
 
+    public function obrisiZavrsene()
+    {
+            Narudzba::obrisiSveZavrsene();
+            header('location: /index'); //ako ne radi dodati jos /index
+    }
+
 
 } 

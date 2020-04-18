@@ -192,27 +192,14 @@ update ponuda set cijena= 7+round(5*rand()) where kategorija=8;
 select * from narudzba;
 select * from kosara;
 select * from kosara_ponuda;
-
+select * from korisnik;
 select cijena from ponuda;
 
 
 #Popis popravaka
-#pri prijavi popraviti kosaru da stol bude default prikazan
-################################################################
-#OVO NE RADI UOPCE VISE
-# u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
-#za konobara radi
-################################################################
-
-#maknuti cijenu i sifru kosare na mjenjanju ponde u narudzbi /sve maknuti i ostaviti smao ponuddu, a za mjenjane stoal napraviti na prethodnoj stranici
-#popraviti algoritam za mjenjanje ukupne cijene pri promjeni količine ponude u narudzbi
-#ako u narudbzi ima 2 puta po isto jelo ne valja mjenjanje kolicine pa tako i cijene
-#iskljuciti notice
-
-
-#AKO STIGNEM
-#mogucnost dodavanja novog jela u ponudu naručenog
-
+#u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
+#mogucnost dodavanja novog jela u ponudu narucenog
+#pri odjavljivanju napraviti render na prijavu
 
 #Pitanja za prof
 #UTF-8 napravti

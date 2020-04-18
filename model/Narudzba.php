@@ -17,7 +17,7 @@
             ');
             $izraz->execute();
             return $izraz->fetchAll();
-        }
+        } 
 
         public static function readKuhar()
         {
@@ -162,6 +162,16 @@
                 $izraz->execute(['sifra'=>$_GET['sifraNar']]);
         }
 
+        public static function obrisiSveZavrsene()
+        {
+
+                $veza = DB::getInstanca();
+                $izraz=$veza->prepare('
+                delete from narudzba where status=5;
+                ');
+                $izraz->execute();
+        }
+
         public static function update()
         {
         
@@ -215,9 +225,13 @@
 
             //dohvacanje kolicine ponude
             $izraz=$veza->prepare('
-            select kolicina from kosara_ponuda where ponuda_sifra=:sifra
+            select kolicina from kosara_ponuda 
+            where ponuda_sifra=:sifraPon and kosara_sifra=:sifraKos
             ');
-            $izraz->execute(['sifra'=>$_GET['sifraPon']]);
+            $izraz->execute([
+                'sifraPon'=>$_GET['sifraPon'],
+                'sifraKos'=>$_GET['sifraKos']
+            ]);
             $staraKolicina=$izraz->fetch()->kolicina;
 
             
@@ -236,12 +250,9 @@
 
             //dohvacanje stare cijene u kosari
             $izraz=$veza->prepare('
-            select a.cijena 
-            from kosara a 
-            left join kosara_ponuda b on b.kosara_sifra=a.sifra
-            where b.ponuda_sifra=:sifra
+            select cijena from kosara where sifra=:sifraKos
             ');
-            $izraz->execute(['sifra'=>$_GET['sifraPon']]);
+            $izraz->execute(['sifraKos'=>$_GET['sifraKos']]);
             $cijenaKosare=$izraz->fetch()->cijena;
 
             //nova željena količina

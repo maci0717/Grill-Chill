@@ -19,7 +19,7 @@
            
             Kosara::SID(); 
             $this->view->render($this->viewDir . 'index', [
-                'poruka' => 'Uspjesno ste narucili',
+                'poruka' => 'Uspjesno ste narucili! Konobar će vas uskoro posjetiti',
                 'podaci'=>''
             ]);
         }
