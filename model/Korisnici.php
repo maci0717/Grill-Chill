@@ -102,7 +102,7 @@ class Korisnici
         $izraz->execute($_POST);
     }
 
-
+ 
     public static function traziKorisnike()
     {
         $veza = DB::getInstanca();

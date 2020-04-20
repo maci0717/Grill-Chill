@@ -33,8 +33,18 @@
    
    
     <td style="text-align: left;" title="Promjeni">
-    <a href="/narudzba/promjena?sifraKos=<?php echo $red->sifraKos ?>">Promjeni</a>
-    <a href="/narudzba/obrisi?sifraNar=<?php echo $red->sifra ?>">Obriši</a></td>
+    <?php 
+      $razmak = str_repeat('&nbsp;', 3);
+      echo $razmak;
+     ?>
+    <a href="/narudzba/promjena?sifraKos=<?php echo $red->sifraKos ?>">
+    <i class="fas fa-exchange-alt fa-2x" style="color: rgb(11, 102, 177);"></i></a>
+    <?php 
+      $razmak = str_repeat('&nbsp;', 7);
+      echo $razmak;
+     ?>
+    <a href="/narudzba/obrisi?sifraNar=<?php echo $red->sifra ?>">
+    <i class="fas fa-ban fa-2x" style="color: rgb(226, 34, 34);"></i></a></td>
     </td>
     
 </tr>

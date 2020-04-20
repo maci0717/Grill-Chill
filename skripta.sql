@@ -199,13 +199,16 @@ select cijena from ponuda;
 #Popis popravaka
 #u ponudi promjeniti listanje stranica, neka uvjet dolazi iz baze 
 #mogucnost dodavanja novog jela u ponudu narucenog
-#pri odjavljivanju napraviti render na prijavu
+#pri odjavljivanju napraviti render na prijavu 
+#provjerti jos jednom dali mi radi mjenjanje cijena
+
+#Za istražiti
+#pogledati favicon
+#tiny mcn - za pisanje i uređivanje teska na webu
 
 #Pitanja za prof
 #UTF-8 napravti
 #kako napraviti da pri mjenjanju statusa narudzbe ostane na istoj poziciji, da se ne scrolla na pocetak stranice gore
-
-
 
 #DOKUMENTACIJA
 #pripazio bi na nazivanje varijabli da se drugi lakse snalaze

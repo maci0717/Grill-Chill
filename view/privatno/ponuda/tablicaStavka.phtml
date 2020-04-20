@@ -1,5 +1,24 @@
 <tr>
-<td title="slika"> <img src="<?php echo $red->slika?>"></td>
+<td title="slika"> <!-- <img src="<?php// echo $red->slika?>"> -->
+        <?php
+            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR
+            . 'images' . DIRECTORY_SEPARATOR . 
+            'ponuda' . DIRECTORY_SEPARATOR 
+            . $red->sifra . '.png')):
+        ?> 
+        <img <?php if($_SESSION['korisnik']->status=="admin") echo 'class="slikaPonude"'?>  
+        id="p_<?php echo $red->sifra ?>" style="max-width: 200px" 
+        src="<?php echo APP::config('url'); ?>public/images/ponuda/<?php echo $red->sifra; ?>.png" 
+        alt="<?php echo $red->naziv . ' ' . $red->nazivKat ?>" />
+            <?php else:?>
+                <img <?php if($_SESSION['korisnik']->status=="admin") echo 'class="slikaPonude"'?>  
+                id="p_<?php echo $red->sifra ?>" style="max-width: 200px"
+                src="<?php echo APP::config('url'); ?>public/images/bezslike.jpg"  
+                alt="Za polaznika nije postavljena slika" />  <!-- Ubaciti gore sliku umjesto nepoznato.jpg -->
+            <?php endif;?>
+
+
+</td>
     <td title="naziv" >
         <span style="font-size: 1.4em;"> <h3><?php echo $red->naziv?></h3> <?php echo $red->opis?></span>
     </td>
@@ -54,4 +73,14 @@
   </button>
 </div>
  
+
+ 
+<div class="reveal" id="slikaPonudeModal" data-reveal>
+  <img id="image" src="" alt="" />
+  <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+  <a href="#" id="spremiSliku">Spremi</a>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 

@@ -21,7 +21,12 @@ class PonudaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
             'uvjet' => $_GET['uvjet'],
-            'javascript'=>'<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>'
+            'css' => '<link rel="stylesheet" href="' . APP::config('url') . 'public/css/cropper.css">',
+            'jsLib' => '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" 
+                        crossorigin="anonymous"></script>
+                        <script src="' . APP::config('url') . 'public/js/cropper.js"></script>',
+            'javascript' => '<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>
+                            <script src="' . APP::config('url') . 'public/js/ponuda/slika.js"></script>'
            ]);
     }
 
@@ -40,9 +45,16 @@ class PonudaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'index',[
             'podaci'=>$podaci,
             'uvjet'=>$uvjet,
-            'javascript'=>'<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>'
+            'css' => '<link rel="stylesheet" href="' . APP::config('url') . 'public/css/cropper.css">',
+            'jsLib' => '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" 
+                        crossorigin="anonymous"></script>
+                        <script src="' . APP::config('url') . 'public/js/cropper.js"></script>',
+            'javascript' => '<script src="' . APP::config('url') . 'public/js/ponuda/index.js"></script>
+                             <script src="' . APP::config('url') . 'public/js/ponuda/slika.js"></script>'
            ]);
     }
+
+
 
 
     public function novo()
@@ -99,6 +111,21 @@ class PonudaController extends AutorizacijaController
     {
         Ponuda::update();
         header('location: /ponuda/index');
+    }
+
+    public function spremiSlikuPonude(){
+
+        $slika = $_POST['slika'];
+        $slika=str_replace('data:image/png;base64,','',$slika);
+        $slika=str_replace(' ','+',$slika);
+        $data=base64_decode($slika);
+
+        file_put_contents(BP . 'public' . DIRECTORY_SEPARATOR
+        . 'images' . DIRECTORY_SEPARATOR . 
+        'ponuda' . DIRECTORY_SEPARATOR 
+        . $_POST['id'] . '.png', $data);
+
+        echo "OK";
     }
 
 }

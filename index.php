@@ -4,7 +4,7 @@ session_start();
 // definiram basepath - apsolutnu putanju mog direktorija
 define("BP",__DIR__ . DIRECTORY_SEPARATOR );
 //echo BP;
-//echo BP;
+
 // prikaži sve greške
 error_reporting(E_ALL);
 ini_set("display_errors",1);
