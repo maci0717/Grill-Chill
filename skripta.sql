@@ -201,6 +201,7 @@ select cijena from ponuda;
 #mogucnost dodavanja novog jela u ponudu narucenog
 #pri odjavljivanju napraviti render na prijavu 
 #provjerti jos jednom dali mi radi mjenjanje cijena
+#pri ponovnom uplodanju slike treba uklonti staru i staviti novu
 
 #Za istražiti
 #pogledati favicon

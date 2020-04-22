@@ -99,6 +99,18 @@
             return $izraz->fetch();
         }
 
+        public static function jeloUKosaru()
+        {
+            $veza = DB::getInstanca();
+            $izraz = $veza->prepare('
+                insert into kosara_ponuda (kosara_sifra, ponuda_sifra, kolicina) 
+                values (:kosara_sifra, :ponuda_sifra, 1)
+            ');
+            $izraz->execute([
+                'kosara_sifra'=> $_GET['sifraKos'],
+                'ponuda_sifra'=> $_GET['sifraPon']
+                ]);
+        }
              
         public static function deletePonuda()
         {

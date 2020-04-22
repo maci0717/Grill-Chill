@@ -52,7 +52,9 @@ action="/narudzba/promjeni?sifra=<?php echo $narudzba->sifra ?>">
    </tbody>
 
 </table>
-    <a class="button" href="#">Dodaj jelo u ponudu</a>
+
+    <a id="p_<?php echo $ponuda->kosara_sifra?>" 
+    class="button otvoriModalUbaci">Dodaj jelo u ponudu</a> 
   
   
   <div class="grid-x grid-margin-x">
@@ -65,4 +67,18 @@ action="/narudzba/promjeni?sifra=<?php echo $narudzba->sifra ?>">
   </div>
 </form>
 <?php echo $poruka; ?>
+
+<div class="reveal" id="modalUbaci" data-reveal>
+  <p>Odaberi jelo </p>
+  <select id="popisPonude">
+        <?php foreach($svaPonuda as $sP){ ?>
+        <option value="<?php echo  $sP->sifra ?>"><?php echo $sP->naziv ?></option>    
+        <?php } ?>
+</select>
+  <a id="linkPotvrdi" class="button">DA</a>
+  <a id="odustani" class="button">Odustani</a>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 

@@ -16,6 +16,7 @@ class NarudzbaController extends AutorizacijaController
             'podaciKuhar'=>Narudzba::readKuhar(),
             'podaciKonobar'=>Narudzba::readKonobar(),
             'ponuda'=>Narudzba::readPonuda(), 
+            'svaPonuda' => Ponuda::readAll()
      ]);
     }
 
@@ -27,7 +28,8 @@ class NarudzbaController extends AutorizacijaController
             'podaciAdmin'=>Narudzba::readAll(),
             'podaciKuhar'=>Narudzba::readKuhar(),
             'podaciKonobar'=>Narudzba::readKonobar(),
-            'ponuda'=>Narudzba::readPonuda(), 
+            'ponuda'=>Narudzba::readPonuda(),
+            'svaPonuda' => Ponuda::readAll() 
      ]);
         
     }
@@ -44,7 +46,8 @@ class NarudzbaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'promjena',[
             'narudzba'=>$narudzba,
             'ponuda'=>$ponuda,
-            'poruka'=>'Promjenite željene podatke'
+            'poruka'=>'Promjenite željene podatke',
+            'svaPonuda' => Ponuda::readAll()
             ]);
      
     }
@@ -67,18 +70,6 @@ class NarudzbaController extends AutorizacijaController
             header('location: /narudzba/promjena?sifraKos='.$_GET['sifraKos']);
     }
 
-    public function promPon()
-    {
-        
-        $narudzba = Narudzba::read($_GET['sifraKos']);
-        $ponuda = Narudzba::readPonuda1($_GET['sifraKos']);
-        $this->view->render($this->viewDir . 'prompon',[
-            'narudzba'=>$narudzba,
-            'ponuda'=>$ponuda,
-            'poruka'=>'Promjenite željene podatke'
-            ]);
-    }
-
     public function obrisi()
     {
             Narudzba::obrisiNarudzbu();
@@ -89,6 +80,13 @@ class NarudzbaController extends AutorizacijaController
     {
             Narudzba::obrisiSveZavrsene();
             header('location: /index'); //ako ne radi dodati jos /index
+    }
+
+    public function ubaciJeloUNarudzbu()
+    {
+        Narudzba::jeloUKosaru();
+        header('location: /narudzba/promjena?sifraKos='. $_GET['sifraKos']);
+
     }
 
 

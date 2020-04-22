@@ -1,12 +1,6 @@
-<?php if($_SESSION['korisnik']->status=='admin'): ?>
-  
-<a href="/narudzba/obrisiZavrsene" class="button" style="background-color: orange;">Obriši završene narudzbe</a>
+<img src="<?php echo APP::config('url'); ?>public/images/grill-chill.jpg" class="center" width="800">
 
+<?php if($_SESSION['korisnik']->status=='admin'): ?> 
+<a href="/narudzba/obrisiZavrsene" class="button" style="background-color: orange;">Obriši završene narudzbe</a>
 <?php endif; ?>
     
-
-    <pre>
-    <?php 
-       // print_r($_SESSION['korisnik']);
-     ?>
-    </pre>
