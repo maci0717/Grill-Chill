@@ -9,7 +9,7 @@ class Ponuda
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra, a.naziv, a.slika, 
+        select a.sifra, a.naziv, 
         a.opis, a.vrijeme, d.nazivKat, a.cijena, b.kolicina
         from ponuda a 
         left join kosara_ponuda b  on a.sifra=b.ponuda_sifra
@@ -17,7 +17,7 @@ class Ponuda
         left join kategorija d on a.kategorija=d.sifra
         where d.nazivKat like :uvjet
         group by a.sifra, a.naziv, a.opis, 
-        a.slika, a.vrijeme, d.nazivKat, a.cijena, b.kolicina 
+        a.vrijeme, d.nazivKat, a.cijena, b.kolicina 
         
         ');
         $izraz->bindParam('uvjet',$uvjet);
